@@ -4,10 +4,18 @@ class User < ApplicationRecord
     has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
     has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
-    has_many :game_hosts
-    has_many :game_creators
+    has_many :game_hosts, :foreign_key => :host_id
     has_many :hosted_games, through: :game_hosts, source: :game
-    has_many :created_games, through: :game_creators, source: :game
+    has_many :games, :foreign_key => :creator_id, as: :created_games
+
+    # user.friends if user_id in friendship table #=> array of friends
+    # user.inverse_friends if friend_id in friendship table #=> array of inverse_friends
+    # user.hosted_games => array of games hosted by this user
+    
+    
+    
+    
+    
     # has_many :games, through: :game_hosts
     # has_many :games, through: :game_players
     # has_many :game_hosts, :class_name => "User", :foreign_key => 
