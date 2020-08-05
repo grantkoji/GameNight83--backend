@@ -132,9 +132,13 @@ Photo.create!(likes: rand(0..100), game_id: game7.id, user_id: User.all.sample.i
 game8 = Game.create!(title: "Bingo on Zoom", creator_id: User.all.sample.id, min_age: 7, min_num_players: 2, max_num_players: 12, image_url: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fhamptonroadsmessenger.com%2Fwp-content%2Fuploads%2F2020%2F06%2FVirtual-Bingo.jpg&imgrefurl=https%3A%2F%2Fhamptonroadsmessenger.com%2Fposts%2Fnnpd-hosts-virtual-bingo%2F&tbnid=2Al4IRC9QhbzgM&vet=12ahUKEwik5_vg5YTrAhVTZt8KHds5Cx0QMygBegUIARC8AQ..i&docid=Z53OUgEALYKETM&w=842&h=529&q=virtual%20bingo&ved=2ahUKEwik5_vg5YTrAhVTZt8KHds5Cx0QMygBegUIARC8AQ", 
 description: "Basic Bingo game, played through Zoom or another video platform", link_to_game_website: "https://myfreebingocards.com/virtual-bingo", category: "Zoom", instructions_and_rules: "Go to the website link to set up a Bingo game. Have all participants join via Zoom or another platform")
 
-Photo.create!(likes: rand(0..100), game_id: game7.id, user_id: User.all.sample.id, caption: "Not sure I can salvage this frame", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRyQ29OyhbIOCu86QuA3RVbirjbT14DSXJVHA&usqp=CAU")
+Photo.create!(likes: rand(0..100), game_id: game8.id, user_id: User.all.sample.id, caption: "BINGO!!!", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSIQ9i9o6SXFntBlZsH8K9KsWLMH436GQ1wHw&usqp=CAU")
+Photo.create!(likes: rand(0..100), game_id: game8.id, user_id: User.all.sample.id, caption: "Went to the beach...so he can play Bingo", image_url: "https://static8.depositphotos.com/1370441/975/i/450/depositphotos_9758096-Young-Attractive-Man-Celebrating-Success-Working-on-Computer-at.jpg")
 
-https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSIQ9i9o6SXFntBlZsH8K9KsWLMH436GQ1wHw&usqp=CAU
+game8 = Game.create!(title: "Bingo on Zoom", creator_id: User.all.sample.id, min_age: 7, min_num_players: 2, max_num_players: 12, image_url: 
+description: "Basic Bingo game, played through Zoom or another video platform", link_to_game_website: "https://myfreebingocards.com/virtual-bingo", category: "Zoom", instructions_and_rules: "Go to the website link to set up a Bingo game. Have all participants join via Zoom or another platform")
+
+https://scattergoriesonline.net/
 100.times do 
     rating = rand(1..10)
     review_content = "This game had no redeeming qualities. I want my time back."
