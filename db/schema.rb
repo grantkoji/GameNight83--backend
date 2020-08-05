@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_04_140005) do
+ActiveRecord::Schema.define(version: 2020_08_05_023216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,18 +20,47 @@ ActiveRecord::Schema.define(version: 2020_08_04_140005) do
     t.integer "friend_id"
   end
 
-  create_table "game_hosts", force: :cascade do |t|
-    t.integer "host_id"
+  create_table "game_photos", force: :cascade do |t|
+    t.integer "user_id"
     t.integer "game_id"
+    t.string "image_url"
+    t.string "caption"
   end
 
   create_table "games", force: :cascade do |t|
     t.string "title"
     t.integer "creator_id"
+    t.integer "min_num_players"
+    t.integer "max_num_players"
+    t.integer "min_age"
+    t.string "description"
+    t.string "instructions_and_rules"
+    t.string "image_url", default: ""
+    t.string "link_to_game_website", default: ""
+    t.string "game_category"
+  end
+
+  create_table "played_games", force: :cascade do |t|
+    t.integer "host_id"
+    t.integer "game_id"
+    t.integer "num_team_or_players"
+    t.string "status", default: "in_progress"
+    t.string "winner", default: "undetermined"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "game_id"
+    t.integer "user_id"
+    t.string "content"
+    t.integer "num_stars"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.string "username"
+    t.string "password_digest"
+    t.integer "age"
+    t.string "fav_games"
   end
 
 end
