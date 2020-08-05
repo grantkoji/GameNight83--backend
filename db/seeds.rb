@@ -43,7 +43,7 @@ end
 #     t.string "game_category"
 #   end
 game1 = Game.create!(title: "Chinese Poker", creator_id: User.all.sample.id, min_age: 12, min_num_players: 2, max_num_players: 4, image_url: "https://pnimg.net/w/articles/0/564/a36c0b4689.jpg", description: "A combination"\
-" of Poker and Switch", link_to_game_website: "https://www.888poker.com/magazine/poker-world/intro-to-chinese-poker", category: "card", rules: "Every player is dealt 13 cards. The goal is to get rid of all of your cards"\
+" of Poker and Switch", link_to_game_website: "https://www.888poker.com/magazine/poker-world/intro-to-chinese-poker", category: "card", instructions_and_rules: "Every player is dealt 13 cards. The goal is to get rid of all of your cards"\
 " first. The player holding the 3 of clubs will go first. The first player can play one card, a pair, or a five card hand. The next player can either pass their turn or play a matching hand (single card, pair, or five card hand) with a higher value. Values of the"\
 " cards are 2 is the highest, then Ace, then King and down in order until you get to 3. Suits are also ranked with spade the highest, then heart, then diamond, then club. So a 7 of spades is higher than a 7 of hearts. Players continue"\
 " to play a matching hand with a higher value until everyone else in the game has passed. If everyone else has passed, whoever played the last hand will start the next one.")
@@ -55,7 +55,7 @@ Photo.create!(likes: rand(0..100), game_id: game1.id, user_id: User.all.sample.i
 
 game2 = Game.create!(title: "KanJam", creator_id: User.all.sample.id, min_age: 8, min_num_players: 4, max_num_players: 4, image_url: "https://img.grouponcdn.com/deal/2JQYQH6rRfgxeXXGN3GV5EkAdYFj/2J-2048x1229/v1/c700x420.jpg", 
 description: "A flying disc game, played with a flying disc and two cans into which players deflect the disc.", link_to_game_website: "https://www.kanjam.com/kanjam-original-disc-game", category: "card", 
-rules: "KanJam is a frisbee based 2 on 2 team game that involves throwing a frisbee at a trash can-like target. Points are earned when you hit the trash can with the frisbee, or when your partner deflects or 'jams' your frisbee into the can."\
+instructions_and_rules: "KanJam is a frisbee based 2 on 2 team game that involves throwing a frisbee at a trash can-like target. Points are earned when you hit the trash can with the frisbee, or when your partner deflects or 'jams' your frisbee into the can."\
 " The first team to 21 wins - unless someone hits an "instant win" which is done when you throw the frisbee perfectly through the mail slot on the front of the can."\
 "You have to throw from behind the can on one side or the other. If the frisbee hits the ground before being deflected or hitting the can you don't get any points."\
 "You have to end on exactly 21. If you go over, like if you have 20 points and you score a 2 pointer, then your score is reduced by that amount as a penalty. So you'd have 18 points and continue playing."\
@@ -70,7 +70,7 @@ Photo.create!(likes: rand(0..100), game_id: game2.id, user_id: User.all.sample.i
 Photo.create!(likes: rand(0..100), game_id: game2.id, user_id: User.all.sample.id, caption: "Four W's in a row", image_url: "https://bloximages.newyork1.vip.townnews.com/nny360.com/content/tncms/assets/v3/editorial/5/5e/55e7dd96-d76d-11e9-aa21-6bfa2a4137b8/5d7db75468553.image.jpg?resize=1200%2C800")
 
 game3 = Game.create!(title: "Bocce", creator_id: User.all.sample.id, min_age: 12, min_num_players: 2, max_num_players: 8, image_url: "https://secure.img1-fg.wfcdn.com/im/98755378/resize-h600-w600%5Ecompr-r85/1218/121872657/100mm+Advanced+Bocce+with+Carrying+Case.jpg", description: "Italian bowling -"\
-" a relaxed, underhand throwing game", link_to_game_website: "https://bocce.org", category: "outdoors", rules: "The object of the game is to roll your bocce balls closer to the pallino (jack) ball than your opponent"\
+" a relaxed, underhand throwing game", link_to_game_website: "https://bocce.org", category: "outdoors", instructions_and_rules: "The object of the game is to roll your bocce balls closer to the pallino (jack) ball than your opponent"\
 "One player per team = four balls per player. Two players per team = two balls per player. Four player per team = one ball per player. The game consists of several frames. A frame starts with tossing the pallino by a team toward the"\
 " opposite end of the playing court. The game (frame) is complete after the balls have been thrown and points awarded. Balls are tossed or rolled underhand. Once the pallino is in position, the first team throws their bocce ball. Taking alternate turns, each "\
 "team throws their balls toward the pallino to (A) get their ball closest to the pallino, (B) to move the pallino closer to their ball, or (C) move the opponent’s ball. The winning team begins the next frame. - Scoring: In each frame, only one team scores. One point is given for each bocce ball that is closer to the "\
@@ -80,6 +80,14 @@ Photo.create!(likes: rand(0..100), game_id: game3.id, user_id: User.all.sample.i
 Photo.create!(likes: rand(0..100), game_id: game3.id, user_id: User.all.sample.id, caption: "Controvery", image_url: "https://i.ytimg.com/vi/D7oKgWCopUw/maxresdefault.jpg")
 Photo.create!(likes: rand(0..100), game_id: game3.id, user_id: User.all.sample.id, caption: "Good to get outdoors!", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRy0bFohFEohZIFNIu0p2FnjJEQEx1P75mbPA&usqp=CAU")
 
+
+game4 = Game.create!(title: "Spikeball", creator_id: User.all.sample.id, min_age: 8, min_num_players: 2, max_num_players: 6, image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRsj_KL2hjqSOilzYdYUo-HpaPDRwnWIH3VYQ&usqp=CAU", 
+description: "A version of volleyball, trying to hit a small, soft ball into a trampoline-like net", link_to_game_website: "https://spikeball.com/", category: "outdoors", rules: ""
+
+Photo.create!(likes: rand(0..100), game_id: game4.id, user_id: User.all.sample.id, caption: "Spike!", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR-l_7E_J3gP8SHiR6iEIurmrEXs7l0wru_vg&usqp=CAU")
+Photo.create!(likes: rand(0..100), game_id: game4.id, user_id: User.all.sample.id, caption: "All out!", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR23b9Dv8VHoG0aD9bnLQ2qYlQxswTC_D5nXQ&usqp=CAU")
+Photo.create!(likes: rand(0..100), game_id: game4.id, user_id: User.all.sample.id, caption: "Nice to be out", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSoH86ems-qptE4yxTmeFjgqLEY-cOBBDoaEg&usqp=CAU")
+Photo.create!(likes: rand(0..100), game_id: game4.id, user_id: User.all.sample.id, caption: "I immediately regret this decision.", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcStprOJfL_FJap78B1VOuvYAMIj2oHvzNQdMg&usqp=CAU")
 
 100.times do 
     rating = rand(1..10)
