@@ -17,17 +17,22 @@ PlayedGame.destroy_all
 Review.destroy_all
 puts "Clearing Database"
 
+
+games_title_array = []
+
 25.times do 
     User.create!(username: Faker::TvShows::SouthPark.unique.character, name: Faker::Name.unique.name, password: "1234", age: rand(18..65), fav_games: Faker::Game.unique.title)
 end
 
-25.times do
-    user1 = rand(1..25)
-    user2 = rand(1..25)
+this_user = User.create!(username: "Catanimal", name: "Grant", password: "1234", age: 75, fav_games: "Catan, Codenames, KanJam, Quiplash")
+
+50.times do
+    user1 = User.all.sample
+    user2 = User.all.sample
     until user2 != user1 do 
-        user2 = rand(1..25)
+        user2 = User.all.sample
     end
-    Friendship.create!(user_id: user1, friend_id: user2)
+    Friendship.create!(user_id: user1.id, friend_id: user2.id)
 end
 
 # create_table "games", force: :cascade do |t|
@@ -53,7 +58,7 @@ Photo.create!(likes: rand(0..100), game_id: game1.id, user_id: User.all.sample.i
 Photo.create!(likes: rand(0..100), game_id: game1.id, user_id: User.all.sample.id, caption: "Needless to say, I did not win", image_url: "https://www.primedope.com/wp-content/uploads/Chinese-Poker-Cards.jpg")
 Photo.create!(likes: rand(0..100), game_id: game1.id, user_id: User.all.sample.id, caption: "The unbeatable hand", image_url: "https://66.media.tumblr.com/d24713a701999c00a7602543ff888238/tumblr_ne8h7vbM3J1tztf0no1_400.jpg")
 
-game2 = Game.create!(title: "KanJam", creator_id: User.all.sample.id, min_age: 8, min_num_players: 4, max_num_players: 4, image_url: "https://img.grouponcdn.com/deal/2JQYQH6rRfgxeXXGN3GV5EkAdYFj/2J-2048x1229/v1/c700x420.jpg", 
+game2 = Game.create!(title: "KanJam", creator_id: this_user.id, min_age: 8, min_num_players: 4, max_num_players: 4, image_url: "https://img.grouponcdn.com/deal/2JQYQH6rRfgxeXXGN3GV5EkAdYFj/2J-2048x1229/v1/c700x420.jpg", 
 description: "A flying disc game, played with a flying disc and two cans into which players deflect the disc.", link_to_game_website: "https://www.kanjam.com/kanjam-original-disc-game", category: "card", 
 instructions_and_rules: "KanJam is a frisbee based 2 on 2 team game that involves throwing a frisbee at a trash can-like target. Points are earned when you hit the trash can with the frisbee, or when your partner deflects or 'jams' your frisbee into the can."\
 " The first team to 21 wins - unless someone hits an "instant win" which is done when you throw the frisbee perfectly through the mail slot on the front of the can."\
@@ -161,15 +166,72 @@ Photo.create!(likes: rand(0..100), game_id: game11.id, user_id: User.all.sample.
 game12 = Game.create!(title: "Pictionary", creator_id: User.all.sample.id, min_age: 8, min_num_players: 2, max_num_players: 6, image_url: "https://d2e111jq13me73.cloudfront.net/sites/default/files/styles/product_image_aspect_switcher_170w/public/product-images/csm-app/pictionary.png?itok=5nk2d9jE",
 description: "Play Pictionary online", link_to_game_website: "https://randomwordgenerator.com/pictionary.php", category: "Zoom or indoors", instructions_and_rules: "Can be played while on Zoom or any other video sharing platform. To play, divide your group into teams. Click the link to open the Pictionary word generator and choose a team to play first, as well as a designated drawer on that team. The drawer generates a word and has one minute to draw that word for their team to guess. If the team guesses the card correctly, they get a point.")
 
-Photo.create!(likes: rand(0..100), game_id: game11.id, user_id: User.all.sample.id, caption: "Been practicing for tonight's game!", image_url: "https://miro.medium.com/max/6724/1*_G9C8CpXLCBY8w3QNpDREA.jpeg")
-Photo.create!(likes: rand(0..100), game_id: game11.id, user_id: User.all.sample.id, caption: "Tough start to the round", image_url: "https://assets.zoom.us/images/en-us/zoom-rooms/zoom-rooms-for-touch/free-form-drawing-example.png")
-Photo.create!(likes: rand(0..100), game_id: game11.id, user_id: User.all.sample.id, caption: "In one minute? Overachiever.", image_url: "https://improveyourdrawings.com/wp-content/uploads/2019/01/Step-5-Mask-opening-1024x1024.jpg")
+Photo.create!(likes: rand(0..100), game_id: game12.id, user_id: User.all.sample.id, caption: "Been practicing for tonight's game!", image_url: "https://miro.medium.com/max/6724/1*_G9C8CpXLCBY8w3QNpDREA.jpeg")
+Photo.create!(likes: rand(0..100), game_id: game12.id, user_id: User.all.sample.id, caption: "Tough start to the round", image_url: "https://assets.zoom.us/images/en-us/zoom-rooms/zoom-rooms-for-touch/free-form-drawing-example.png")
+Photo.create!(likes: rand(0..100), game_id: game12.id, user_id: User.all.sample.id, caption: "In one minute? Overachiever", image_url: "https://improveyourdrawings.com/wp-content/uploads/2019/01/Step-5-Mask-opening-1024x1024.jpg")
 
 game13 = Game.create!(title: "Heads Up!", creator_id: User.all.sample.id, min_age: 8, min_num_players: 4, max_num_players: 30, image_url: "https://irs.www.warnerbros.com/hero-banner-v2-tablet-jpeg/game/media/browser/heads_up_mobile_app_uber_4320x1080jpg.jpg",
-description: "Use the Heads Up! phone app while on zoom", link_to_game_website: "https://apps.apple.com/us/app/heads-up/id623592465", category: "Zoom", instructions_and_rules: "A classic word game where players have to describe the word on the screen to the person holding the screen to their head. You can choose from a range of categories and play with as many people as you can fit in your room or Zoom."\
+description: "Use the Heads Up! phone app while on zoom", link_to_game_website: "https://apps.apple.com/us/app/heads-up/id623592465", category: "Zoom or indoors", instructions_and_rules: "A classic word game where players have to describe the word on the screen to the person holding the screen to their head. You can choose from a range of categories and play with as many people as you can fit in your room or Zoom."\
 " Click on the link to download Heads Up! on the Game Host's phone. To play on Zoom, have the Game Host show the phone running Heads Up!, while the person who is 'Up' must not look at their Zoom screen. Game is the same otherwise.")
 
-150.times do 
+Photo.create!(likes: rand(0..100), game_id: game13.id, user_id: User.all.sample.id, caption: "Ready to go, but forgot to install the app", image_url: "https://happymomhacks.com/wp-content/uploads/2020/04/heads-up-768x644.jpg")
+Photo.create!(likes: rand(0..100), game_id: game13.id, user_id: User.all.sample.id, caption: "Yeah, he doesn't know how to do that...", image_url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.scoopnest.com%2Fuser%2Fbillboard%2F705509329777070081-we-played-heads-up-with-zedd-today-and-you-can-watch-the-fun-right-here&psig=AOvVaw04dMAGr1NIjIaMdHcTSlw7&ust=1596765091083000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOjZ5dS8hesCFQAAAAAdAAAAABAE")
+Photo.create!(likes: rand(0..100), game_id: game13.id, user_id: User.all.sample.id, caption: "Your child may read at the 8th Grade level, but mine got 7 right on this round", image_url: "https://gretapunch.files.wordpress.com/2014/03/heads-up.png")
+Photo.create!(likes: rand(0..100), game_id: game13.id, user_id: User.all.sample.id, caption: "Jeff refuses to turn around to start his turn! Meanwhile, I'm just holding my phone...", image_url: "https://i.insider.com/5ea30c63a34b3c67b324de14?width=1100&format=jpeg&auto=webp")
+
+game14 = Game.create!(title: "Charades", creator_id: User.all.sample.id, min_age: 8, min_num_players: 4, max_num_players: 12, image_url: "https://ecdn.teacherspayteachers.com/thumbitem/Charades-Virtual-Distance-Learning-Game-Zoom--5650742/original-5650742-1.jpg",
+description: "Charades while on zoom", link_to_game_website: "http://www.getcharadesideas.com/", category: "Zoom or indoors", instructions_and_rules: "Split your group into two teams and click the link to use the charades idea generator to choose your words and phrases. The person who's acting out the charade uses the Zoom 'spotlight' feature, and their team has one minute to figure out the phrase.")
+
+Photo.create!(likes: rand(0..100), game_id: game14.id, user_id: User.all.sample.id, caption: "It was high five. How did they not get high five!?!?!", image_url: "https://imgix.bustle.com/uploads/getty/2020/3/27/ed8cc558-7510-49c4-a5d9-c5e06dda90df-getty-1214101407.jpg?w=1200&h=630&q=70&fit=crop&crop=faces&fm=jpg")
+Photo.create!(likes: rand(0..100), game_id: game14.id, user_id: User.all.sample.id, caption: "Four words...", image_url: "https://pbs.twimg.com/media/EUDnnzsWAAQ1HJ-.jpg")
+Photo.create!(likes: rand(0..100), game_id: game14.id, user_id: User.all.sample.id, caption: "Locked in and ready to go. Future Gamer!", image_url: "https://lh3.googleusercontent.com/proxy/uyQQdDc_XyO_nDRAlQGlXHxg8S6YvYDkuaf7pEfmzUVOD2o0O8184I0BxEfVPlXvLNzD6Vu8TtmORTMtDqGU0UWUBmbHj_Ov-gZAqeyqwNIr7_2OkW_i6rgDtA")
+
+game15 = Game.create!(title: "Codenames", creator_id: this_user.id, min_age: 12, min_num_players: 4, max_num_players: 14, image_url: "https://cf.geekdo-images.com/opengraph/img/KvWkw6TGLr4arA4E1lwnJocdy8E=/fit-in/1200x630/pic2582929.jpg",
+description: "Codenames while on zoom", link_to_game_website: "https://codenames.game/", category: "Zoom boardgame", instructions_and_rules: "What you need to play: Zoom, either click the link to get the online version or use the regular Codenames card game and an extra camera to stream the board with some creative rigging equipment."\
+" In Codenames, two teams — red and blue — race to correctly guess all their assigned cards in a grid of 25."\
+" Every card has a word/codename, like “ghost,” and each team elects a spymaster who will provide one-word hints for their teammates to guess which words/code names belong to their team. "\
+"For example, a spymaster might say “specter” to hint to their team that “ghost” is in fact an allied agent. If your team correctly guesses a card, you get to continue playing. "\
+"The round stops when your team finds all your agents, stumbles upon a card belonging to the other team or finds a neutral card, dubbed a “bystander.” Spymasters can associate a number with their clue word to try to get their teammates to select more cards in one turn, increasing the difficulty but allowing for a bigger reward. "\
+"The entire game is a tabletop version of a minefield. Spymasters provide hints that are usually synonyms to the code names in play but it can be easy to question whether one hint is referring to two or three different cards. Maybe the hint is “city” but Paris, Berlin and Moscow are all on the table. On top of all this, one card is designated as the assassin and, if you select it, your team automatically loses. "\
+"For a game of Codenames on Zoom, you’re going to need an extra camera to display the board of cards to the entire group, like this. Whether you have a fancy rig with a webcam or a broomstick and phone with duct tape is entirely your call — so long as the entire group can read the names on all the cards. There’s also an unofficial workaround that alleviates the need for the second camera that you can find online, if you’d prefer to go that route. "\
+"After that, you’ll need to figure out how to send the spymasters their keys at the start of every game. The quickest way may just be to message a picture to both players. Once you’ve solved those technical riddles, playing the game becomes pretty simple. You can even use the annotation tools in Zoom to tally up the “red” or “blue” agents as the game progresses.")
+
+Photo.create!(likes: rand(0..100), game_id: game15.id, user_id: User.all.sample.id, caption: "Down to the wire!", image_url: "https://compote.slate.com/images/1ac25e00-3d2d-4ad9-aac5-2a2d7aa53d9a.jpeg?width=780&height=520&rect=1560x1040&offset=0x0")
+Photo.create!(likes: rand(0..100), game_id: game15.id, user_id: User.all.sample.id, caption: "Rigging it up", image_url: "https://www.wikihow.com/images/thumb/e/e8/CodenamesZoomPhone1.jpg/460px-CodenamesZoomPhone1.jpg")
+Photo.create!(likes: rand(0..100), game_id: game15.id, user_id: User.all.sample.id, caption: "Comeback starts now!", image_url: "https://miro.medium.com/max/5120/1*0wkDJmDBY40bGuCjky1ZLA.png")
+
+game16 = Game.create!(title: "Pandemic", creator_id: User.all.sample.id, min_age: 8, min_num_players: 2, max_num_players: 4, image_url: "https://target.scene7.com/is/image/Target/GUEST_0313f621-d762-4e1d-9855-e32163314488?wid=488&hei=488&fmt=pjpeg",
+description: "Pandemic online or on Zoom", link_to_game_website: "https://www.asmodee-digital.com/en/pandemic/", category: "Zoom or online boardgame", instructions_and_rules: "What you need to play: Zoom, either click the link to get the online version or use the regular Pandemic game and an extra camera to stream the board with some creative rigging equipment.")
+
+Photo.create!(likes: rand(0..100), game_id: game16.id, user_id: User.all.sample.id, caption: "Thanks to Tom, made it work and saved the world!", image_url: "https://compote.slate.com/images/97b8a754-4c8c-4bba-86d8-92c43cad6bd6.jpeg?width=780&height=520&rect=1728x1152&offset=115x0")
+Photo.create!(likes: rand(0..100), game_id: game16.id, user_id: User.all.sample.id, caption: "Just as good online as in person", image_url: "https://images.nintendolife.com/screenshots/98402/large.jpg")
+
+game17 = Game.create!(title: "Ticket To Ride", creator_id: User.all.sample.id, min_age: 8, min_num_players: 2, max_num_players: 5, image_url: "https://images-na.ssl-images-amazon.com/images/I/81bLWZK-RNL._AC_SX679_.jpg",
+description: "Ticket To Ride online or while on Zoom", link_to_game_website: "https://www.daysofwonder.com/online/en/t2r/", category: "Zoom or online boardgame", instructions_and_rules: "What you need to play: Zoom, either click the link to get the online version or use the regular Ticket To Ride game and an extra camera to stream the board with some creative rigging equipment.")
+
+Photo.create!(likes: rand(0..100), game_id: game17.id, user_id: User.all.sample.id, caption: "Losing our focus, but we got this!", image_url: "https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_675,pg_1,q_80,w_1200/jjfi1r0p7bnzpn24li1z.jpg")
+Photo.create!(likes: rand(0..100), game_id: game17.id, user_id: User.all.sample.id, caption: "Northern roads for the win!", image_url: "https://phandroid.com/wp-content/uploads/2013/06/ticket-to-ride-640x400.png")
+
+game18 = Game.create!(title: "Words With Friends", creator_id: User.all.sample.id, min_age: 13, min_num_players: 2, max_num_players: 4, image_url: "https://i.ytimg.com/vi/V5d5rl1k_bw/hqdefault.jpg",
+description: "Words With Friends through Facebook", link_to_game_website: "https://www.facebook.com/WordsWithFriends/", category: "Facebook boardgame", instructions_and_rules: "What you need to play: a Facebook account. Click the link to get started")
+
+Photo.create!(likes: rand(0..100), game_id: game18.id, user_id: User.all.sample.id, caption: "Game on!", image_url: "https://cnet4.cbsistatic.com/img/3T0MUC3UKeA5FRpxsgvOHAigsmo=/940x0/2018/12/13/15fdb167-674f-4b6e-87a3-d7aa1ff192bb/portalplus-wwf-121218.jpg")
+
+game19 = Game.create!(title: "Dominion", creator_id: User.all.sample.id, min_age: 13, min_num_players: 2, max_num_players: 4, image_url: "https://images-na.ssl-images-amazon.com/images/I/9152Ik8HZ5L._AC_SL1500_.jpg"
+description: "Dominion online or on Zoom", link_to_game_website: "https://dominion.games/", category: "Zoom or online boardgame", instructions_and_rules: "What you need to play: Zoom, either click the link to get the online version or use the regular Dominion game and an extra camera to stream the board with some creative rigging equipment.")
+
+Photo.create!(likes: rand(0..100), game_id: game19.id, user_id: User.all.sample.id, caption: "Siskel and Ebert gave me two thumbs up!", image_url: "https://masilotti.com/images/zoom-and-dominion.png")
+
+game20 = Game.create!(title: "Settlers of Catan", creator_id: this.user.id, min_age: 10, min_num_players: 3, max_num_players: 4, image_url: "https://upload.wikimedia.org/wikipedia/en/a/a3/Catan-2015-boxart.jpg",
+description: "Settlers of Catan online", link_to_game_website: "https://www.catanuniverse.com/", category: "Online boardgame", instructions_and_rules: "Click the link to get the online version. Can Zoom or Facetime your friends on a separate device to negotiate trades. It's easy to use once set up, but a pain to get started. To purchase the game, create an account."\
+" Logging in will take you to the home page. To purchase the online game, click the icon on the top right corner. You will have to first buy 'Gold', then use that Gold to buy 'Expansions'")
+
+Photo.create!(likes: rand(0..100), game_id: game20.id, user_id: User.all.sample.id, caption: "The game was over before it even begun, they just didn't now it yet", image_url: "https://i.insider.com/5e7a5261671de0466d70d443")
+Photo.create!(likes: rand(0..100), game_id: game20.id, user_id: User.all.sample.id, caption: "Got wheat, looking for brick...how about sheep?", image_url: "https://i.insider.com/5e7a43f62d41c108fa457e61?width=1100&format=jpeg&auto=webp")
+Photo.create!(likes: rand(0..100), game_id: game20.id, user_id: this_user.id, caption: "Get that ish off me!", image_url: "https://i.ytimg.com/vi/Yek6OXhCCg4/maxresdefault.jpg")
+Photo.create!(likes: rand(0..100), game_id: game20.id, user_id: this_user.id, caption: "All of those 7's!", image_url: "https://i.imgur.com/4vvoXcd.jpg")
+
+100.times do 
     rating = rand(1..10)
     review_content = "This game had no redeeming qualities. I want my time back."
     if rating == 10 
@@ -187,7 +249,7 @@ description: "Use the Heads Up! phone app while on zoom", link_to_game_website: 
     elsif rating == 4
         review_content = "Had some issues with the rules being a little unclear, but the game went alright."
     elsif rating == 3
-        review_content = "Was surprised by other positive reviews. Didn't get much out of this one."
+        review_content = "Not sure. Didn't get much out of this one."
     elsif rating == 2
         review_content = "Meh..."
     end
