@@ -18,7 +18,14 @@ Review.destroy_all
 puts "Clearing Database"
 
 
+
 games_title_array = ["Charades", "Codenames", "Words With Friends", "Settlers of Catan", "Dominion", "Pandemic", "Ticket To Ride", "KanJam", "Bocce", "Spikeball", "Cornhole", "Inflatable Bubble Soccer", "Wooden Lawn Bowling", "Bingo", "Scattegories", "Most Likely To...", "Trivia", "Pictionary", "Heads Up!"]
+# doc spang = https://www.sportsmednorth.com/sites/sportsmednorthV2/files/styles/profile_photo/public/physicians/robert-c-spang-iii-md.jpg?itok=3oSiiE9D
+# grant = https://i.imgur.com/pTaDCul.jpg
+# magnus carlsen https://i.guim.co.uk/img/media/699cce4914b90ae0ba89787178bc48314d50eb89/0_215_5081_3048/master/5081.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=20e357d35de3b2adeb09c3b400520d39
+# Question mark https://banner2.cleanpng.com/20180403/dje/kisspng-question-mark-computer-icons-clip-art-question-mark-5ac3de9116dec4.9390654415227859370937.jpg
+bob_user = User.create!(username: "QueenOfSheep", name: "Bob", password "1234", age: 30, fav_games: "Catan, Poker")
+magnus_user User.create!(username: "Grandmaster", name: "Magnus", password "1234", age: 29, fav_games: "Chess")
 
 25.times do 
     User.create!(username: Faker::TvShows::SouthPark.unique.character, name: Faker::Name.unique.name, password: "1234", age: rand(18..65), fav_games: games_title_array.sample)
@@ -28,10 +35,14 @@ this_user = User.create!(username: "Catanimal", name: "Grant", password: "1234",
 
 puts "Users created"
 
+Friendship.create!(user_id: this_user.id, friend_id: bob_user.id)
+Friendship.create!(user_id: magnus_user.id, friend_id: this_user.id)
+
+
 100.times do
     user1 = User.all.sample
     user2 = User.all.sample
-    until user2 != user1 do 
+    until user2 != user1 && user1.friends.none? {|friend| friend == user2} && user1.inverse_friends.none? {|friend| friend == user2} do
         user2 = User.all.sample
     end
     Friendship.create!(user_id: user1.id, friend_id: user2.id)
@@ -40,7 +51,7 @@ end
 puts "Friendships created"
 
 game1 = Game.create!(title: "Chinese Poker", creator_id: User.all.sample.id, min_age: 12, min_num_players: 2, max_num_players: 4, image_url: "https://pnimg.net/w/articles/0/564/a36c0b4689.jpg", description: "A combination"\
-" of Poker and Switch", link_to_game_website: "https://www.888poker.com/magazine/poker-world/intro-to-chinese-poker", category: "card", instructions_and_rules: "Every player is dealt 13 cards. The goal is to get rid of all of your cards"\
+" of Poker and Switch", link_to_game_website: "https://www.888poker.com/magazine/poker-world/intro-to-chinese-poker", game_category: "card", instructions_and_rules: "Every player is dealt 13 cards. The goal is to get rid of all of your cards"\
 " first. The player holding the 3 of clubs will go first. The first player can play one card, a pair, or a five card hand. The next player can either pass their turn or play a matching hand (single card, pair, or five card hand) with a higher value. Values of the"\
 " cards are 2 is the highest, then Ace, then King and down in order until you get to 3. Suits are also ranked with spade the highest, then heart, then diamond, then club. So a 7 of spades is higher than a 7 of hearts. Players continue"\
 " to play a matching hand with a higher value until everyone else in the game has passed. If everyone else has passed, whoever played the last hand will start the next one.")
@@ -53,7 +64,7 @@ Photo.create!(likes: rand(0..100), game_id: game1.id, user_id: User.all.sample.i
 puts "Game 1 and photos created"
 
 game2 = Game.create!(title: "KanJam", creator_id: this_user.id, min_age: 8, min_num_players: 4, max_num_players: 4, image_url: "https://img.grouponcdn.com/deal/2JQYQH6rRfgxeXXGN3GV5EkAdYFj/2J-2048x1229/v1/c700x420.jpg", 
-description: "A flying disc game, played with a flying disc and two cans into which players deflect the disc.", link_to_game_website: "https://www.kanjam.com/kanjam-original-disc-game", category: "card", 
+description: "A flying disc game, played with a flying disc and two cans into which players deflect the disc.", link_to_game_website: "https://www.kanjam.com/kanjam-original-disc-game", game_category: "card", 
 instructions_and_rules: "KanJam is a frisbee based 2 on 2 team game that involves throwing a frisbee at a trash can-like target. Points are earned when you hit the trash can with the frisbee, or when your partner deflects or 'jams' your frisbee into the can."\
 " The first team to 21 wins - unless someone hits an "instant win" which is done when you throw the frisbee perfectly through the mail slot on the front of the can."\
 "You have to throw from behind the can on one side or the other. If the frisbee hits the ground before being deflected or hitting the can you don't get any points."\
@@ -69,7 +80,7 @@ Photo.create!(likes: rand(0..100), game_id: game2.id, user_id: User.all.sample.i
 Photo.create!(likes: rand(0..100), game_id: game2.id, user_id: User.all.sample.id, caption: "Four W's in a row", image_url: "https://bloximages.newyork1.vip.townnews.com/nny360.com/content/tncms/assets/v3/editorial/5/5e/55e7dd96-d76d-11e9-aa21-6bfa2a4137b8/5d7db75468553.image.jpg?resize=1200%2C800")
 
 game3 = Game.create!(title: "Bocce", creator_id: User.all.sample.id, min_age: 12, min_num_players: 2, max_num_players: 8, image_url: "https://secure.img1-fg.wfcdn.com/im/98755378/resize-h600-w600%5Ecompr-r85/1218/121872657/100mm+Advanced+Bocce+with+Carrying+Case.jpg", description: "Italian bowling -"\
-" a relaxed, underhand throwing game", link_to_game_website: "https://bocce.org", category: "outdoors", instructions_and_rules: "The object of the game is to roll your bocce balls closer to the pallino (jack) ball than your opponent"\
+" a relaxed, underhand throwing game", link_to_game_website: "https://bocce.org", game_category: "outdoors", instructions_and_rules: "The object of the game is to roll your bocce balls closer to the pallino (jack) ball than your opponent"\
 "One player per team = four balls per player. Two players per team = two balls per player. Four player per team = one ball per player. The game consists of several frames. A frame starts with tossing the pallino by a team toward the"\
 " opposite end of the playing court. The game (frame) is complete after the balls have been thrown and points awarded. Balls are tossed or rolled underhand. Once the pallino is in position, the first team throws their bocce ball. Taking alternate turns, each "\
 "team throws their balls toward the pallino to (A) get their ball closest to the pallino, (B) to move the pallino closer to their ball, or (C) move the opponent’s ball. The winning team begins the next frame. - Scoring: In each frame, only one team scores. One point is given for each bocce ball that is closer to the "\
@@ -81,7 +92,7 @@ Photo.create!(likes: rand(0..100), game_id: game3.id, user_id: User.all.sample.i
 
 
 game4 = Game.create!(title: "Spikeball", creator_id: User.all.sample.id, min_age: 8, min_num_players: 2, max_num_players: 6, image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRsj_KL2hjqSOilzYdYUo-HpaPDRwnWIH3VYQ&usqp=CAU", 
-description: "A version of volleyball, trying to hit a small, soft ball into a trampoline-like net", link_to_game_website: "https://spikeball.com/", category: "outdoors", instructions_and_rules: "Serving: 1) The server’s feet must be six feet away from the net when while serving."\
+description: "A version of volleyball, trying to hit a small, soft ball into a trampoline-like net", link_to_game_website: "https://spikeball.com/", game_category: "outdoors", instructions_and_rules: "Serving: 1) The server’s feet must be six feet away from the net when while serving."\
 " 2) After serving, the ball must bounce cleanly off of the net. If the ball hits the rim or misses the net completely, the point is lost to the team being served. 3) If the serve is too high or hits both the net and rim (pocket) then the server  has committed a fault. Each serve is entitled to one fault."\
 "4) If the server fails to complete a successful serve the second time, their team loses the point and serve to the opposition. 5) Only the defensive player opposite of the server may return the ball. 6) The server continues to serve until their team loses a point."\
 " 7) Both soft and hard serves are allowed. 8) After each point scored, the serving team switches positions, the defensive team stays in the same position. - Contacting the Ball: 1) Each team gets up to three touches to return the ball off of the net."\
@@ -96,7 +107,7 @@ Photo.create!(likes: rand(0..100), game_id: game4.id, user_id: User.all.sample.i
 
 puts "Game 4 and photos created"
 game5 = Game.create!(title: "Cornhole", creator_id: User.all.sample.id, min_age: 4, min_num_players: 2, max_num_players: 8, image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTHpUe-WitJ-tGjJS4mpBLejCNfSGJ0U2LWxQ&usqp=CAU",
-description: "An underhand bean bag tossing game, aiming throws at a hole inside a platform on the other side of the field.", link_to_game_website: "https://www.playcornhole.org/", category: "outdoors", instructions_and_rules: "CORNHOLE MATCHES: Each team will stay in their designated lane for the whole game."\
+description: "An underhand bean bag tossing game, aiming throws at a hole inside a platform on the other side of the field.", link_to_game_website: "https://www.playcornhole.org/", game_category: "outdoors", instructions_and_rules: "CORNHOLE MATCHES: Each team will stay in their designated lane for the whole game."\
 " Players at the headboard will alternate pitching bags until each player has pitched all four of his/her bags. Players at the footboard will take score and resume pitching back to the other board. The top of an inning is completed when both players pitching from the headboard pitch all four bags; the bottom of the inning is completed when the remaining players pitching from the footboard pitch all four bags."\
 " SCORING: The approved method of scoring for the sport of cornhole is “cancellation” scoring. In cancellation scoring, the points of one player cancel out the points of their opponent. Using this method, only one player/team can score in each inning. Bag In-The-Count (Woody) : Any bag which comes to rest anywhere on top of the board. Each is worth one (1) point."\
 " Bag In-The-Hole (Cornhole) : Any bag which is thrown through the hole or knocked through the hole by another bag. Each is worth three (3) points. Foul Bags – Refers to any bag that has not been determined as Bag In-The-Count or Bag In-The Hole or was designated a foul bag as the result of rules violation. PLAYER PITCHING ROTATION: "\
@@ -112,7 +123,7 @@ Photo.create!(likes: rand(0..100), game_id: game5.id, user_id: User.all.sample.i
 Photo.create!(likes: rand(0..100), game_id: game5.id, user_id: User.all.sample.id, caption: "So many regretful decisions culminated in this one moment...", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSCWRjXrNCt7P54dd2q-dIXHTBkqZQsfKqNhA&usqp=CAU")
 
 game6 = Game.create!(title: "Inflatable Bubble Soccer", creator_id: User.all.sample.id, min_age: 10, min_num_players: 2, max_num_players: 12, image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQJp9IlTVqQ3S7Xpb-2IJYqlQ8bO6GOelX_dikyOKLYXVyQfgOxxCkLtv4lNQ&usqp=CAc", 
-description: "Soccer in an Inflatable bubble", link_to_game_website: "https://www.inflatable-zone.com/bubble-soccer/bubble-football.html", category: "outdoors contact", instructions_and_rules: "The game requires Bubble Balls, soccer ball, boundary markers & goals. Some people bring their own knee pads for extra comfort/protection and to make it easier to stand up without using their arms."\
+description: "Soccer in an Inflatable bubble", link_to_game_website: "https://www.inflatable-zone.com/bubble-soccer/bubble-football.html", game_category: "outdoors contact", instructions_and_rules: "The game requires Bubble Balls, soccer ball, boundary markers & goals. Some people bring their own knee pads for extra comfort/protection and to make it easier to stand up without using their arms."\
 "The game loosely follow traditional soccer rules. For example, there is no Off-Sides! You start the game with the soccer ball in the middle of the field. The players stand several feet away and when the ref blows the whistle everyone runs to the ball at the same time resulting in some Bubble Ballers rolling around on the ground! The real fun is just beginning because when you crash into another player, both of you will go flying in different directions. "\
 "Each team typically has 5 players and at least 1 substitute. The game is exhilarating & exhausting so bring a sub if possible. Substitutions can be made during the game as needed. There are 4 periods lasting 10 minutes each with a few 2 minute breaks"\
 " Each team can call a 2 minute timeout during a half. All play stops immediately when the referee blows the whistle. No kicking or bumping into a player when they are are down. No bumping a player when they are trying to stand back up. No knocking players over when the ball is out of bounds. Don't knock down someone who is not facing you. "\
@@ -125,26 +136,26 @@ Photo.create!(likes: rand(0..100), game_id: game6.id, user_id: User.all.sample.i
 Photo.create!(likes: rand(0..100), game_id: game6.id, user_id: this_user.id, caption: "Neither of them wound up with the ball", image_url: "https://i.pinimg.com/originals/5f/c6/7e/5fc67e55b2900aa1267e623a7817129c.jpg")
 
 game7 = Game.create!(title: "Wooden Lawn Bowling", creator_id: User.all.sample.id, min_age: 7, min_num_players: 2, max_num_players: 12, image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRZlnhEcVJ6HvpUmqveetUBZ6zHGCdGZUqfB7n9pMYINNo7HA0ASExREjHufYg&usqp=CAc", 
-description: "Bowling set that can be played on a lawn", link_to_game_website: "https://www.amazon.com/Bowling-Skittle-Toddlers-Hey-Play/dp/B01ACYSSL6?tag=178918-outdoorgamesforadults-20", category: "outdoors", instructions_and_rules: "Rules are the same as bowling")
+description: "Bowling set that can be played on a lawn", link_to_game_website: "https://www.amazon.com/Bowling-Skittle-Toddlers-Hey-Play/dp/B01ACYSSL6?tag=178918-outdoorgamesforadults-20", game_category: "outdoors", instructions_and_rules: "Rules are the same as bowling")
 
 Photo.create!(likes: rand(0..100), game_id: game7.id, user_id: User.all.sample.id, caption: "Had to make some modifications for him", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS52MSwOukwiM7PbzaHChP8WY91Fc7LrVOgvQ&usqp=CAU")
 Photo.create!(likes: rand(0..100), game_id: game7.id, user_id: User.all.sample.id, caption: "Not sure I can salvage this frame", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRyQ29OyhbIOCu86QuA3RVbirjbT14DSXJVHA&usqp=CAU")
 
 game8 = Game.create!(title: "Bingo on Zoom", creator_id: User.all.sample.id, min_age: 7, min_num_players: 2, max_num_players: 12, image_url: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fhamptonroadsmessenger.com%2Fwp-content%2Fuploads%2F2020%2F06%2FVirtual-Bingo.jpg&imgrefurl=https%3A%2F%2Fhamptonroadsmessenger.com%2Fposts%2Fnnpd-hosts-virtual-bingo%2F&tbnid=2Al4IRC9QhbzgM&vet=12ahUKEwik5_vg5YTrAhVTZt8KHds5Cx0QMygBegUIARC8AQ..i&docid=Z53OUgEALYKETM&w=842&h=529&q=virtual%20bingo&ved=2ahUKEwik5_vg5YTrAhVTZt8KHds5Cx0QMygBegUIARC8AQ", 
-description: "Basic Bingo game, played through Zoom or another video platform", link_to_game_website: "https://myfreebingocards.com/virtual-bingo", category: "Zoom", instructions_and_rules: "Go to the website link to set up a Bingo game. Have all participants join via Zoom or another platform")
+description: "Basic Bingo game, played through Zoom or another video platform", link_to_game_website: "https://myfreebingocards.com/virtual-bingo", game_category: "Zoom", instructions_and_rules: "Go to the website link to set up a Bingo game. Have all participants join via Zoom or another platform")
 
 Photo.create!(likes: rand(0..100), game_id: game8.id, user_id: User.all.sample.id, caption: "BINGO!!!", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSIQ9i9o6SXFntBlZsH8K9KsWLMH436GQ1wHw&usqp=CAU")
 Photo.create!(likes: rand(0..100), game_id: game8.id, user_id: this_user.id, caption: "Went to the beach...so he can play Bingo", image_url: "https://static8.depositphotos.com/1370441/975/i/450/depositphotos_9758096-Young-Attractive-Man-Celebrating-Success-Working-on-Computer-at.jpg")
 
 puts "Game 8 and photos created"
 game9 = Game.create!(title: "Scattegories on Zoom", creator_id: User.all.sample.id, min_age: 12, min_num_players: 2, max_num_players: 6, image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTiYxClFryO1aXDBwm43J-PiI4c2zChd2R9Ug&usqp=CAU",
-description: "Scattegories played through Zoom or another video platform", link_to_game_website: "https://scattergoriesonline.net/", category: "Zoom", instructions_and_rules: "Go to the website link to generate a free game. Send each person a link to the game. "\
+description: "Scattegories played through Zoom or another video platform", link_to_game_website: "https://scattergoriesonline.net/", game_category: "Zoom", instructions_and_rules: "Go to the website link to generate a free game. Send each person a link to the game. "\
 "The rules are simple: there is one letter and five categories (things like 'school supplies,' 'book title,' and 'girl's name'). You have 60 seconds to come up with a word that fits in each category and starts with the chosen letter. The more unique your answer is compared to your friends' answers, the more points you get.")
 
 Photo.create!(likes: rand(0..100), game_id: game9.id, user_id: User.all.sample.id, caption: "P for the win!", image_url: "https://www.ultraboardgames.com/scattergories/gfx/game6.jpg")
 
 game10 = Game.create!(title: "Most Likely To...", creator_id: User.all.sample.id, min_age: 21, min_num_players: 4, max_num_players: 20, image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRlONzra0R68ygqEfoD6RGcTsfNbX-fLg4SMw&usqp=CAU",
-description: "A fun way to get to know your friends. Drinking is optional", link_to_game_website: "https://www.tagquestions.net/most-likely-to-questions-tag/", category: "Zoom Drinking", instructions_and_rules: "Pose different 'most likely to' scenarios — for example,"\ 
+description: "A fun way to get to know your friends. Drinking is optional", link_to_game_website: "https://www.tagquestions.net/most-likely-to-questions-tag/", game_category: "Zoom Drinking", instructions_and_rules: "Pose different 'most likely to' scenarios — for example,"\ 
 " 'most likely to go skydiving' or 'most likely to own a zoo' — and decide which friend would be most likely to do that thing. Whoever it is has to drink. Click the link to find a big list of questions.")
 
 Photo.create!(likes: rand(0..100), game_id: game10.id, user_id: User.all.sample.id, caption: "Most Likely To win the Oscar...", image_url: "https://www.etonline.com/sites/default/files/styles/max_970x546/public/images/2020-04/streep.jpg?h=884b70cc&itok=LhjepvxK")
@@ -153,7 +164,7 @@ Photo.create!(likes: rand(0..100), game_id: game10.id, user_id: User.all.sample.
 Photo.create!(likes: rand(0..100), game_id: game10.id, user_id: this_user.id, caption: "Most Likely To games keep ending in a TIE!!!", image_url: "https://i.ytimg.com/vi/w5-n290V_Z4/hqdefault.jpg")
 
 game11 = Game.create!(title: "Trivia", creator_id: User.all.sample.id, min_age: 10, min_num_players: 4, max_num_players: 20, image_url: "https://www.griswoldhomecare.com/wp-content/uploads/2020/06/bigstock-Trivia-Contest-Quiz-Game-Night-325315975.jpg",
-description: "Play Trivia online", link_to_game_website: "https://www.randomtriviagenerator.com", category: "Zoom or indoors", instructions_and_rules: "To play trivia on Zoom, click the link to open a random trivia generator and start asking questions. Have each person send their answer in the Zoom chat at the same time (or just use the honors system).")
+description: "Play Trivia online", link_to_game_website: "https://www.randomtriviagenerator.com", game_category: "Zoom or indoors", instructions_and_rules: "To play trivia on Zoom, click the link to open a random trivia generator and start asking questions. Have each person send their answer in the Zoom chat at the same time (or just use the honors system).")
 
 Photo.create!(likes: rand(0..100), game_id: game11.id, user_id: User.all.sample.id, caption: "Trivia Night!!!", image_url: "https://s.hdnux.com/photos/01/11/25/64/19225904/3/480x480.png")
 Photo.create!(likes: rand(0..100), game_id: game11.id, user_id: User.all.sample.id, caption: "Stumping us all!", image_url: "https://bloximages.newyork1.vip.townnews.com/stltoday.com/content/tncms/assets/v3/editorial/c/ae/cae53719-c3d0-56af-a710-baf85d0d9198/5e8f8159861bf.image.jpg?resize=1200%2C671")
@@ -161,7 +172,7 @@ Photo.create!(likes: rand(0..100), game_id: game11.id, user_id: this_user.id, ca
 Photo.create!(likes: rand(0..100), game_id: game11.id, user_id: User.all.sample.id, caption: "Final round and Sarah's baby's in the lead!", image_url: "https://bloximages.newyork1.vip.townnews.com/stltoday.com/content/tncms/assets/v3/editorial/8/57/8572a92d-3ba6-5464-a108-9d6c26c90e51/5e8f815998334.image.jpg?resize=1200%2C803")
 
 game12 = Game.create!(title: "Pictionary", creator_id: User.all.sample.id, min_age: 8, min_num_players: 2, max_num_players: 6, image_url: "https://d2e111jq13me73.cloudfront.net/sites/default/files/styles/product_image_aspect_switcher_170w/public/product-images/csm-app/pictionary.png?itok=5nk2d9jE",
-description: "Play Pictionary online", link_to_game_website: "https://randomwordgenerator.com/pictionary.php", category: "Zoom or indoors", instructions_and_rules: "Can be played while on Zoom or any other video sharing platform. To play, divide your group into teams. Click the link to open the Pictionary word generator and choose a team to play first, as well as a designated drawer on that team. The drawer generates a word and has one minute to draw that word for their team to guess. If the team guesses the card correctly, they get a point.")
+description: "Play Pictionary online", link_to_game_website: "https://randomwordgenerator.com/pictionary.php", game_category: "Zoom or indoors", instructions_and_rules: "Can be played while on Zoom or any other video sharing platform. To play, divide your group into teams. Click the link to open the Pictionary word generator and choose a team to play first, as well as a designated drawer on that team. The drawer generates a word and has one minute to draw that word for their team to guess. If the team guesses the card correctly, they get a point.")
 
 Photo.create!(likes: rand(0..100), game_id: game12.id, user_id: User.all.sample.id, caption: "Been practicing for tonight's game!", image_url: "https://miro.medium.com/max/6724/1*_G9C8CpXLCBY8w3QNpDREA.jpeg")
 Photo.create!(likes: rand(0..100), game_id: game12.id, user_id: this_user.id, caption: "Tough start to the round", image_url: "https://assets.zoom.us/images/en-us/zoom-rooms/zoom-rooms-for-touch/free-form-drawing-example.png")
@@ -169,7 +180,7 @@ Photo.create!(likes: rand(0..100), game_id: game12.id, user_id: User.all.sample.
 
 puts "Game 12 and photos created"
 game13 = Game.create!(title: "Heads Up!", creator_id: User.all.sample.id, min_age: 8, min_num_players: 4, max_num_players: 30, image_url: "https://irs.www.warnerbros.com/hero-banner-v2-tablet-jpeg/game/media/browser/heads_up_mobile_app_uber_4320x1080jpg.jpg",
-description: "Use the Heads Up! phone app while on zoom", link_to_game_website: "https://apps.apple.com/us/app/heads-up/id623592465", category: "Zoom or indoors", instructions_and_rules: "A classic word game where players have to describe the word on the screen to the person holding the screen to their head. You can choose from a range of categories and play with as many people as you can fit in your room or Zoom."\
+description: "Use the Heads Up! phone app while on zoom", link_to_game_website: "https://apps.apple.com/us/app/heads-up/id623592465", game_category: "Zoom or indoors", instructions_and_rules: "A classic word game where players have to describe the word on the screen to the person holding the screen to their head. You can choose from a range of categories and play with as many people as you can fit in your room or Zoom."\
 " Click on the link to download Heads Up! on the Game Host's phone. To play on Zoom, have the Game Host show the phone running Heads Up!, while the person who is 'Up' must not look at their Zoom screen. Game is the same otherwise.")
 
 Photo.create!(likes: rand(0..100), game_id: game13.id, user_id: User.all.sample.id, caption: "Ready to go, but forgot to install the app", image_url: "https://happymomhacks.com/wp-content/uploads/2020/04/heads-up-768x644.jpg")
@@ -178,14 +189,14 @@ Photo.create!(likes: rand(0..100), game_id: game13.id, user_id: this_user.id, ca
 Photo.create!(likes: rand(0..100), game_id: game13.id, user_id: this_user.id, caption: "Jeff refuses to turn around to start his turn! Meanwhile, Rachel's just holding her phone...", image_url: "https://i.insider.com/5ea30c63a34b3c67b324de14?width=1100&format=jpeg&auto=webp")
 
 game14 = Game.create!(title: "Charades", creator_id: User.all.sample.id, min_age: 8, min_num_players: 4, max_num_players: 12, image_url: "https://ecdn.teacherspayteachers.com/thumbitem/Charades-Virtual-Distance-Learning-Game-Zoom--5650742/original-5650742-1.jpg",
-description: "Charades while on zoom", link_to_game_website: "http://www.getcharadesideas.com/", category: "Zoom or indoors", instructions_and_rules: "Split your group into two teams and click the link to use the charades idea generator to choose your words and phrases. The person who's acting out the charade uses the Zoom 'spotlight' feature, and their team has one minute to figure out the phrase.")
+description: "Charades while on zoom", link_to_game_website: "http://www.getcharadesideas.com/", game_category: "Zoom or indoors", instructions_and_rules: "Split your group into two teams and click the link to use the charades idea generator to choose your words and phrases. The person who's acting out the charade uses the Zoom 'spotlight' feature, and their team has one minute to figure out the phrase.")
 
 Photo.create!(likes: rand(0..100), game_id: game14.id, user_id: this_user.id, caption: "It was high five. How did they not get high five!?!?!", image_url: "https://imgix.bustle.com/uploads/getty/2020/3/27/ed8cc558-7510-49c4-a5d9-c5e06dda90df-getty-1214101407.jpg?w=1200&h=630&q=70&fit=crop&crop=faces&fm=jpg")
 Photo.create!(likes: rand(0..100), game_id: game14.id, user_id: User.all.sample.id, caption: "Four words...", image_url: "https://pbs.twimg.com/media/EUDnnzsWAAQ1HJ-.jpg")
 Photo.create!(likes: rand(0..100), game_id: game14.id, user_id: User.all.sample.id, caption: "Locked in and ready to go. Future Gamer!", image_url: "https://lh3.googleusercontent.com/proxy/uyQQdDc_XyO_nDRAlQGlXHxg8S6YvYDkuaf7pEfmzUVOD2o0O8184I0BxEfVPlXvLNzD6Vu8TtmORTMtDqGU0UWUBmbHj_Ov-gZAqeyqwNIr7_2OkW_i6rgDtA")
 
 game15 = Game.create!(title: "Codenames", creator_id: this_user.id, min_age: 12, min_num_players: 4, max_num_players: 14, image_url: "https://cf.geekdo-images.com/opengraph/img/KvWkw6TGLr4arA4E1lwnJocdy8E=/fit-in/1200x630/pic2582929.jpg",
-description: "Codenames while on zoom", link_to_game_website: "https://codenames.game/", category: "Zoom boardgame", instructions_and_rules: "What you need to play: Zoom, either click the link to get the online version or use the regular Codenames card game and an extra camera to stream the board with some creative rigging equipment."\
+description: "Codenames while on zoom", link_to_game_website: "https://codenames.game/", game_category: "Zoom boardgame", instructions_and_rules: "What you need to play: Zoom, either click the link to get the online version or use the regular Codenames card game and an extra camera to stream the board with some creative rigging equipment."\
 " In Codenames, two teams — red and blue — race to correctly guess all their assigned cards in a grid of 25."\
 " Every card has a word/codename, like “ghost,” and each team elects a spymaster who will provide one-word hints for their teammates to guess which words/code names belong to their team. "\
 "For example, a spymaster might say “specter” to hint to their team that “ghost” is in fact an allied agent. If your team correctly guesses a card, you get to continue playing. "\
@@ -199,30 +210,30 @@ Photo.create!(likes: rand(0..100), game_id: game15.id, user_id: User.all.sample.
 Photo.create!(likes: rand(0..100), game_id: game15.id, user_id: User.all.sample.id, caption: "Comeback starts now!", image_url: "https://miro.medium.com/max/5120/1*0wkDJmDBY40bGuCjky1ZLA.png")
 
 game16 = Game.create!(title: "Pandemic", creator_id: User.all.sample.id, min_age: 8, min_num_players: 2, max_num_players: 4, image_url: "https://target.scene7.com/is/image/Target/GUEST_0313f621-d762-4e1d-9855-e32163314488?wid=488&hei=488&fmt=pjpeg",
-description: "Pandemic online or on Zoom", link_to_game_website: "https://www.asmodee-digital.com/en/pandemic/", category: "Zoom or online boardgame", instructions_and_rules: "What you need to play: Zoom, either click the link to get the online version or use the regular Pandemic game and an extra camera to stream the board with some creative rigging equipment.")
+description: "Pandemic online or on Zoom", link_to_game_website: "https://www.asmodee-digital.com/en/pandemic/", game_category: "Zoom or online boardgame", instructions_and_rules: "What you need to play: Zoom, either click the link to get the online version or use the regular Pandemic game and an extra camera to stream the board with some creative rigging equipment.")
 
 Photo.create!(likes: rand(0..100), game_id: game16.id, user_id: User.all.sample.id, caption: "Thanks to Tom, made it work and saved the world!", image_url: "https://compote.slate.com/images/97b8a754-4c8c-4bba-86d8-92c43cad6bd6.jpeg?width=780&height=520&rect=1728x1152&offset=115x0")
 Photo.create!(likes: rand(0..100), game_id: game16.id, user_id: User.all.sample.id, caption: "Just as good online as in person", image_url: "https://images.nintendolife.com/screenshots/98402/large.jpg")
 
 puts "Game 16 and photos created"
 game17 = Game.create!(title: "Ticket To Ride", creator_id: User.all.sample.id, min_age: 8, min_num_players: 2, max_num_players: 5, image_url: "https://images-na.ssl-images-amazon.com/images/I/81bLWZK-RNL._AC_SX679_.jpg",
-description: "Ticket To Ride online or while on Zoom", link_to_game_website: "https://www.daysofwonder.com/online/en/t2r/", category: "Zoom or online boardgame", instructions_and_rules: "What you need to play: Zoom, either click the link to get the online version or use the regular Ticket To Ride game and an extra camera to stream the board with some creative rigging equipment.")
+description: "Ticket To Ride online or while on Zoom", link_to_game_website: "https://www.daysofwonder.com/online/en/t2r/", game_category: "Zoom or online boardgame", instructions_and_rules: "What you need to play: Zoom, either click the link to get the online version or use the regular Ticket To Ride game and an extra camera to stream the board with some creative rigging equipment.")
 
 Photo.create!(likes: rand(0..100), game_id: game17.id, user_id: this_user.id, caption: "Losing our focus, but we got this!", image_url: "https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_675,pg_1,q_80,w_1200/jjfi1r0p7bnzpn24li1z.jpg")
 Photo.create!(likes: rand(0..100), game_id: game17.id, user_id: User.all.sample.id, caption: "Northern roads for the win!", image_url: "https://phandroid.com/wp-content/uploads/2013/06/ticket-to-ride-640x400.png")
 
 game18 = Game.create!(title: "Words With Friends", creator_id: User.all.sample.id, min_age: 13, min_num_players: 2, max_num_players: 4, image_url: "https://i.ytimg.com/vi/V5d5rl1k_bw/hqdefault.jpg",
-description: "Words With Friends through Facebook", link_to_game_website: "https://www.facebook.com/WordsWithFriends/", category: "Facebook boardgame", instructions_and_rules: "What you need to play: a Facebook account. Click the link to get started")
+description: "Words With Friends through Facebook", link_to_game_website: "https://www.facebook.com/WordsWithFriends/", game_category: "Facebook boardgame", instructions_and_rules: "What you need to play: a Facebook account. Click the link to get started")
 
 Photo.create!(likes: rand(0..100), game_id: game18.id, user_id: User.all.sample.id, caption: "Game on!", image_url: "https://cnet4.cbsistatic.com/img/3T0MUC3UKeA5FRpxsgvOHAigsmo=/940x0/2018/12/13/15fdb167-674f-4b6e-87a3-d7aa1ff192bb/portalplus-wwf-121218.jpg")
 
 game19 = Game.create!(title: "Dominion", creator_id: User.all.sample.id, min_age: 13, min_num_players: 2, max_num_players: 4, image_url: "https://images-na.ssl-images-amazon.com/images/I/9152Ik8HZ5L._AC_SL1500_.jpg"
-description: "Dominion online or on Zoom", link_to_game_website: "https://dominion.games/", category: "Zoom or online boardgame", instructions_and_rules: "What you need to play: Zoom, either click the link to get the online version or use the regular Dominion game and an extra camera to stream the board with some creative rigging equipment.")
+description: "Dominion online or on Zoom", link_to_game_website: "https://dominion.games/", game_category: "Zoom or online boardgame", instructions_and_rules: "What you need to play: Zoom, either click the link to get the online version or use the regular Dominion game and an extra camera to stream the board with some creative rigging equipment.")
 
 Photo.create!(likes: rand(0..100), game_id: game19.id, user_id: User.all.sample.id, caption: "Siskel and Ebert gave me two thumbs up!", image_url: "https://masilotti.com/images/zoom-and-dominion.png")
 
 game20 = Game.create!(title: "Settlers of Catan", creator_id: this.user.id, min_age: 10, min_num_players: 3, max_num_players: 4, image_url: "https://upload.wikimedia.org/wikipedia/en/a/a3/Catan-2015-boxart.jpg",
-description: "Settlers of Catan online", link_to_game_website: "https://www.catanuniverse.com/", category: "Online boardgame", instructions_and_rules: "Click the link to get the online version. Can Zoom or Facetime your friends on a separate device to negotiate trades. It's easy to use once set up, but a pain to get started. To purchase the game, create an account."\
+description: "Settlers of Catan online", link_to_game_website: "https://www.catanuniverse.com/", game_category: "Online boardgame", instructions_and_rules: "Click the link to get the online version. Can Zoom or Facetime your friends on a separate device to negotiate trades. It's easy to use once set up, but a pain to get started. To purchase the game, create an account."\
 " Logging in will take you to the home page. To purchase the online game, click the icon on the top right corner. You will have to first buy 'Gold', then use that Gold to buy 'Expansions'")
 
 Photo.create!(likes: rand(0..100), game_id: game20.id, user_id: User.all.sample.id, caption: "The game was over before it even begun, they just didn't now it yet", image_url: "https://i.insider.com/5e7a5261671de0466d70d443")
@@ -230,6 +241,7 @@ Photo.create!(likes: rand(0..100), game_id: game20.id, user_id: User.all.sample.
 Photo.create!(likes: rand(0..100), game_id: game20.id, user_id: this_user.id, caption: "Get that ish off me!", image_url: "https://i.ytimg.com/vi/Yek6OXhCCg4/maxresdefault.jpg")
 Photo.create!(likes: rand(0..100), game_id: game20.id, user_id: this_user.id, caption: "All of those 7's!", image_url: "https://i.imgur.com/4vvoXcd.jpg")
 puts "All games and photos created"
+
 100.times do 
     rating = rand(1..10)
     review_content = "This game had no redeeming qualities. I want my time back."
@@ -254,8 +266,10 @@ puts "All games and photos created"
     end
     rating = (rating / 2).ceil
     user = User.all.sample
-    game = Game.all.sample
-    Review.create!(user_id: user.id, game_id: game.id, num_stars: rating, content: review_content)
+    this_game = Game.all.sample
+    if user.reviews.none? {|review| review.game_id == this_game.id}
+        Review.create!(user_id: user.id, game_id: this_game.id, num_stars: rating, content: review_content)
+    end
 end
 
 puts "Reviews created. All set"

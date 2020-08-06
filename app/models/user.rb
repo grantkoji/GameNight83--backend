@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-      # has_secure_password
+      has_secure_password
     has_many :played_games, :foreign_key => :host_id
     has_many :games, :foreign_key => :creator_id
     has_many :friendships
