@@ -24,9 +24,9 @@ games_title_array = ["Charades", "Codenames", "Words With Friends", "Settlers of
 
 
 # Question mark https://banner2.cleanpng.com/20180403/dje/kisspng-question-mark-computer-icons-clip-art-question-mark-5ac3de9116dec4.9390654415227859370937.jpg
-bob_user = User.create!(username: "QueenOfSheep", name: "Bob", password "1234", age: 30, fav_games: "Catan, Poker", profile_url: "https://www.sportsmednorth.com/sites/sportsmednorthV2/files/styles/profile_photo/public/physicians/robert-c-spang-iii-md.jpg?itok=3oSiiE9D")
-magnus_user User.create!(username: "Grandmaster", name: "Magnus", password "1234", age: 29, fav_games: "Chess", profile_url: "https://i.guim.co.uk/img/media/699cce4914b90ae0ba89787178bc48314d50eb89/0_215_5081_3048/master/5081.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=20e357d35de3b2adeb09c3b400520d39")
-vic_user User.create!(username: "LV", name: "Victor", password "1234", age: 30, fav_games: "Catan", profile_url: "https://med.stanford.edu/news/all-news/2015/11/rocket-scientists-bring-expertise-to-analyzing-breath-of-sick-kids/_jcr_content/main/image.img.620.high.jpg")
+bob_user = User.create!(username: "QueenOfSheep", name: "Bob", password: "1234", age: 30, fav_games: "Catan, Poker", profile_url: "https://www.sportsmednorth.com/sites/sportsmednorthV2/files/styles/profile_photo/public/physicians/robert-c-spang-iii-md.jpg?itok=3oSiiE9D")
+magnus_user = User.create!(username: "Grandmaster", name: "Magnus", password: "1234", age: 29, fav_games: "Chess", profile_url: "https://i.guim.co.uk/img/media/699cce4914b90ae0ba89787178bc48314d50eb89/0_215_5081_3048/master/5081.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=20e357d35de3b2adeb09c3b400520d39")
+vic_user = User.create!(username: "LV", name: "Victor", password: "1234", age: 30, fav_games: "Catan", profile_url: "https://med.stanford.edu/news/all-news/2015/11/rocket-scientists-bring-expertise-to-analyzing-breath-of-sick-kids/_jcr_content/main/image.img.620.high.jpg")
 
 20.times do 
     User.create!(username: Faker::TvShows::SouthPark.unique.character, name: Faker::Name.unique.name, password: "1234", age: rand(18..65), fav_games: games_title_array.sample)
@@ -68,7 +68,7 @@ puts "Game 1 and GamePhotos created"
 game2 = Game.create!(title: "KanJam", creator_id: this_user.id, min_age: 8, min_num_players: 4, max_num_players: 4, image_url: "https://img.grouponcdn.com/deal/2JQYQH6rRfgxeXXGN3GV5EkAdYFj/2J-2048x1229/v1/c700x420.jpg", 
 description: "A flying disc game, played with a flying disc and two cans into which players deflect the disc.", link_to_game_website: "https://www.kanjam.com/kanjam-original-disc-game", game_category: "card", 
 instructions_and_rules: "KanJam is a frisbee based 2 on 2 team game that involves throwing a frisbee at a trash can-like target. Points are earned when you hit the trash can with the frisbee, or when your partner deflects or 'jams' your frisbee into the can."\
-" The first team to 21 wins - unless someone hits an "instant win" which is done when you throw the frisbee perfectly through the mail slot on the front of the can."\
+" The first team to 21 wins - unless someone hits an 'instant win' which is done when you throw the frisbee perfectly through the mail slot on the front of the can."\
 "You have to throw from behind the can on one side or the other. If the frisbee hits the ground before being deflected or hitting the can you don't get any points."\
 "You have to end on exactly 21. If you go over, like if you have 20 points and you score a 2 pointer, then your score is reduced by that amount as a penalty. So you'd have 18 points and continue playing."\
 "You can't hit the disc twice, catch and throw, or use 2 hands to deflect."\
@@ -157,7 +157,7 @@ description: "Scattegories played through Zoom or another video platform", link_
 GamePhoto.create!(likes: rand(0..100), game_id: game9.id, user_id: User.all.sample.id, caption: "P for the win!", image_url: "https://www.ultraboardgames.com/scattergories/gfx/game6.jpg")
 
 game10 = Game.create!(title: "Most Likely To...", creator_id: User.all.sample.id, min_age: 21, min_num_players: 4, max_num_players: 20, image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRlONzra0R68ygqEfoD6RGcTsfNbX-fLg4SMw&usqp=CAU",
-description: "A fun way to get to know your friends. Drinking is optional", link_to_game_website: "https://www.tagquestions.net/most-likely-to-questions-tag/", game_category: "Zoom Drinking", instructions_and_rules: "Pose different 'most likely to' scenarios — for example,"\ 
+description: "A fun way to get to know your friends. Drinking is optional", link_to_game_website: "https://www.tagquestions.net/most-likely-to-questions-tag/", game_category: "Zoom Drinking", instructions_and_rules: "Pose different 'most likely to' scenarios — for example,"\
 " 'most likely to go skydiving' or 'most likely to own a zoo' — and decide which friend would be most likely to do that thing. Whoever it is has to drink. Click the link to find a big list of questions.")
 
 GamePhoto.create!(likes: rand(0..100), game_id: game10.id, user_id: User.all.sample.id, caption: "Most Likely To win the Oscar...", image_url: "https://www.etonline.com/sites/default/files/styles/max_970x546/public/images/2020-04/streep.jpg?h=884b70cc&itok=LhjepvxK")
@@ -207,7 +207,7 @@ description: "Codenames while on zoom", link_to_game_website: "https://codenames
 "For a game of Codenames on Zoom, you’re going to need an extra camera to display the board of cards to the entire group, like this. Whether you have a fancy rig with a webcam or a broomstick and phone with duct tape is entirely your call — so long as the entire group can read the names on all the cards. There’s also an unofficial workaround that alleviates the need for the second camera that you can find online, if you’d prefer to go that route. "\
 "After that, you’ll need to figure out how to send the spymasters their keys at the start of every game. The quickest way may just be to message a picture to both players. Once you’ve solved those technical riddles, playing the game becomes pretty simple. You can even use the annotation tools in Zoom to tally up the “red” or “blue” agents as the game progresses.")
 
-GamePhoto.create!(likes: rand(0..100), game_id: game15.id, user_id: this.user_.id, caption: "Down to the wire!", image_url: "https://compote.slate.com/images/1ac25e00-3d2d-4ad9-aac5-2a2d7aa53d9a.jpeg?width=780&height=520&rect=1560x1040&offset=0x0")
+GamePhoto.create!(likes: rand(0..100), game_id: game15.id, user_id: this_user.id, caption: "Down to the wire!", image_url: "https://compote.slate.com/images/1ac25e00-3d2d-4ad9-aac5-2a2d7aa53d9a.jpeg?width=780&height=520&rect=1560x1040&offset=0x0")
 GamePhoto.create!(likes: rand(0..100), game_id: game15.id, user_id: User.all.sample.id, caption: "Rigging it up", image_url: "https://www.wikihow.com/images/thumb/e/e8/CodenamesZoomPhone1.jpg/460px-CodenamesZoomPhone1.jpg")
 GamePhoto.create!(likes: rand(0..100), game_id: game15.id, user_id: User.all.sample.id, caption: "Comeback starts now!", image_url: "https://miro.medium.com/max/5120/1*0wkDJmDBY40bGuCjky1ZLA.png")
 
@@ -229,12 +229,12 @@ description: "Words With Friends through Facebook", link_to_game_website: "https
 
 GamePhoto.create!(likes: rand(0..100), game_id: game18.id, user_id: User.all.sample.id, caption: "Game on!", image_url: "https://cnet4.cbsistatic.com/img/3T0MUC3UKeA5FRpxsgvOHAigsmo=/940x0/2018/12/13/15fdb167-674f-4b6e-87a3-d7aa1ff192bb/portalplus-wwf-121218.jpg")
 
-game19 = Game.create!(title: "Dominion", creator_id: User.all.sample.id, min_age: 13, min_num_players: 2, max_num_players: 4, image_url: "https://images-na.ssl-images-amazon.com/images/I/9152Ik8HZ5L._AC_SL1500_.jpg"
+game19 = Game.create!(title: "Dominion", creator_id: User.all.sample.id, min_age: 13, min_num_players: 2, max_num_players: 4, image_url: "https://images-na.ssl-images-amazon.com/images/I/9152Ik8HZ5L._AC_SL1500_.jpg",
 description: "Dominion online or on Zoom", link_to_game_website: "https://dominion.games/", game_category: "Zoom or online boardgame", instructions_and_rules: "What you need to play: Zoom, either click the link to get the online version or use the regular Dominion game and an extra camera to stream the board with some creative rigging equipment.")
 
 GamePhoto.create!(likes: rand(0..100), game_id: game19.id, user_id: User.all.sample.id, caption: "Siskel and Ebert gave me two thumbs up!", image_url: "https://masilotti.com/images/zoom-and-dominion.png")
 
-game20 = Game.create!(title: "Settlers of Catan", creator_id: this.user.id, min_age: 10, min_num_players: 3, max_num_players: 4, image_url: "https://upload.wikimedia.org/wikipedia/en/a/a3/Catan-2015-boxart.jpg",
+game20 = Game.create!(title: "Settlers of Catan", creator_id: this_user.id, min_age: 10, min_num_players: 3, max_num_players: 4, image_url: "https://upload.wikimedia.org/wikipedia/en/a/a3/Catan-2015-boxart.jpg",
 description: "Settlers of Catan online", link_to_game_website: "https://www.catanuniverse.com/", game_category: "Online boardgame", instructions_and_rules: "Click the link to get the online version. Can Zoom or Facetime your friends on a separate device to negotiate trades. It's easy to use once set up, but a pain to get started. To purchase the game, create an account."\
 " Logging in will take you to the home page. To purchase the online game, click the icon on the top right corner. You will have to first buy 'Gold', then use that Gold to buy 'Expansions'")
 
