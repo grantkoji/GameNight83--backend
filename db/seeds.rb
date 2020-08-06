@@ -135,31 +135,61 @@ description: "Basic Bingo game, played through Zoom or another video platform", 
 Photo.create!(likes: rand(0..100), game_id: game8.id, user_id: User.all.sample.id, caption: "BINGO!!!", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSIQ9i9o6SXFntBlZsH8K9KsWLMH436GQ1wHw&usqp=CAU")
 Photo.create!(likes: rand(0..100), game_id: game8.id, user_id: User.all.sample.id, caption: "Went to the beach...so he can play Bingo", image_url: "https://static8.depositphotos.com/1370441/975/i/450/depositphotos_9758096-Young-Attractive-Man-Celebrating-Success-Working-on-Computer-at.jpg")
 
-game8 = Game.create!(title: "Bingo on Zoom", creator_id: User.all.sample.id, min_age: 7, min_num_players: 2, max_num_players: 12, image_url: 
-description: "Basic Bingo game, played through Zoom or another video platform", link_to_game_website: "https://myfreebingocards.com/virtual-bingo", category: "Zoom", instructions_and_rules: "Go to the website link to set up a Bingo game. Have all participants join via Zoom or another platform")
+game9 = Game.create!(title: "Scattegories on Zoom", creator_id: User.all.sample.id, min_age: 12, min_num_players: 2, max_num_players: 6, image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTiYxClFryO1aXDBwm43J-PiI4c2zChd2R9Ug&usqp=CAU",
+description: "Scattegories played through Zoom or another video platform", link_to_game_website: "https://scattergoriesonline.net/", category: "Zoom", instructions_and_rules: "Go to the website link to generate a free game. Send each person a link to the game. "\
+"The rules are simple: there is one letter and five categories (things like 'school supplies,' 'book title,' and 'girl's name'). You have 60 seconds to come up with a word that fits in each category and starts with the chosen letter. The more unique your answer is compared to your friends' answers, the more points you get.")
 
-https://scattergoriesonline.net/
-100.times do 
+Photo.create!(likes: rand(0..100), game_id: game9.id, user_id: User.all.sample.id, caption: "P for the win!", image_url: "https://www.ultraboardgames.com/scattergories/gfx/game6.jpg")
+
+game10 = Game.create!(title: "Most Likely To...", creator_id: User.all.sample.id, min_age: 21, min_num_players: 4, max_num_players: 20, image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRlONzra0R68ygqEfoD6RGcTsfNbX-fLg4SMw&usqp=CAU",
+description: "A fun way to get to know your friends. Drinking is optional", link_to_game_website: "https://www.tagquestions.net/most-likely-to-questions-tag/", category: "Zoom Drinking", instructions_and_rules: "Pose different 'most likely to' scenarios — for example,"\ 
+" 'most likely to go skydiving' or 'most likely to own a zoo' — and decide which friend would be most likely to do that thing. Whoever it is has to drink. Click the link to find a big list of questions.")
+
+Photo.create!(likes: rand(0..100), game_id: game10.id, user_id: User.all.sample.id, caption: "Most Likely To win the Oscar...", image_url: "https://www.etonline.com/sites/default/files/styles/max_970x546/public/images/2020-04/streep.jpg?h=884b70cc&itok=LhjepvxK")
+Photo.create!(likes: rand(0..100), game_id: game10.id, user_id: User.all.sample.id, caption: "Voted Most Likely To become a bestselling author. Bottoms up, then back to typing...", image_url: "https://static01.nyt.com/images/2020/03/27/multimedia/20happy-hour-coronavirus/20happy-hour-coronavirus-mobileMasterAt3x.jpg")
+Photo.create!(likes: rand(0..100), game_id: game10.id, user_id: User.all.sample.id, caption: "Most Likely To hoard toilet paper. Guess who won?", image_url: "https://i.dailymail.co.uk/1s/2020/03/06/08/25614960-8081859-image-a-48_1583482874060.jpg")
+Photo.create!(likes: rand(0..100), game_id: game10.id, user_id: User.all.sample.id, caption: "Most Likely To games keep ending in a TIE!!!", image_url: "https://i.ytimg.com/vi/w5-n290V_Z4/hqdefault.jpg")
+
+game11 = Game.create!(title: "Trivia", creator_id: User.all.sample.id, min_age: 10, min_num_players: 4, max_num_players: 20, image_url: "https://www.griswoldhomecare.com/wp-content/uploads/2020/06/bigstock-Trivia-Contest-Quiz-Game-Night-325315975.jpg",
+description: "Play Trivia online", link_to_game_website: "https://www.randomtriviagenerator.com", category: "Zoom or indoors", instructions_and_rules: "To play trivia on Zoom, click the link to open a random trivia generator and start asking questions. Have each person send their answer in the Zoom chat at the same time (or just use the honors system).")
+
+Photo.create!(likes: rand(0..100), game_id: game11.id, user_id: User.all.sample.id, caption: "Trivia Night!!!", image_url: "https://s.hdnux.com/photos/01/11/25/64/19225904/3/480x480.png")
+Photo.create!(likes: rand(0..100), game_id: game11.id, user_id: User.all.sample.id, caption: "Stumping us all!", image_url: "https://bloximages.newyork1.vip.townnews.com/stltoday.com/content/tncms/assets/v3/editorial/c/ae/cae53719-c3d0-56af-a710-baf85d0d9198/5e8f8159861bf.image.jpg?resize=1200%2C671")
+Photo.create!(likes: rand(0..100), game_id: game11.id, user_id: User.all.sample.id, caption: "Forgot my European sandwich names...", image_url: "https://kilowatt.beer/wp-content/uploads/2019/10/zoom-trivia-845x321.jpg")
+Photo.create!(likes: rand(0..100), game_id: game11.id, user_id: User.all.sample.id, caption: "Final round and Sarah's baby's in the lead!", image_url: "https://bloximages.newyork1.vip.townnews.com/stltoday.com/content/tncms/assets/v3/editorial/8/57/8572a92d-3ba6-5464-a108-9d6c26c90e51/5e8f815998334.image.jpg?resize=1200%2C803")
+
+game12 = Game.create!(title: "Pictionary", creator_id: User.all.sample.id, min_age: 8, min_num_players: 2, max_num_players: 6, image_url: "https://d2e111jq13me73.cloudfront.net/sites/default/files/styles/product_image_aspect_switcher_170w/public/product-images/csm-app/pictionary.png?itok=5nk2d9jE",
+description: "Play Pictionary online", link_to_game_website: "https://randomwordgenerator.com/pictionary.php", category: "Zoom or indoors", instructions_and_rules: "Can be played while on Zoom or any other video sharing platform. To play, divide your group into teams. Click the link to open the Pictionary word generator and choose a team to play first, as well as a designated drawer on that team. The drawer generates a word and has one minute to draw that word for their team to guess. If the team guesses the card correctly, they get a point.")
+
+Photo.create!(likes: rand(0..100), game_id: game11.id, user_id: User.all.sample.id, caption: "Been practicing for tonight's game!", image_url: "https://miro.medium.com/max/6724/1*_G9C8CpXLCBY8w3QNpDREA.jpeg")
+Photo.create!(likes: rand(0..100), game_id: game11.id, user_id: User.all.sample.id, caption: "Tough start to the round", image_url: "https://assets.zoom.us/images/en-us/zoom-rooms/zoom-rooms-for-touch/free-form-drawing-example.png")
+Photo.create!(likes: rand(0..100), game_id: game11.id, user_id: User.all.sample.id, caption: "In one minute? Overachiever.", image_url: "https://improveyourdrawings.com/wp-content/uploads/2019/01/Step-5-Mask-opening-1024x1024.jpg")
+
+game13 = Game.create!(title: "Heads Up!", creator_id: User.all.sample.id, min_age: 8, min_num_players: 4, max_num_players: 30, image_url: "https://irs.www.warnerbros.com/hero-banner-v2-tablet-jpeg/game/media/browser/heads_up_mobile_app_uber_4320x1080jpg.jpg",
+description: "Use the Heads Up! phone app while on zoom", link_to_game_website: "https://apps.apple.com/us/app/heads-up/id623592465", category: "Zoom", instructions_and_rules: "A classic word game where players have to describe the word on the screen to the person holding the screen to their head. You can choose from a range of categories and play with as many people as you can fit in your room or Zoom."\
+" Click on the link to download Heads Up! on the Game Host's phone. To play on Zoom, have the Game Host show the phone running Heads Up!, while the person who is 'Up' must not look at their Zoom screen. Game is the same otherwise.")
+
+150.times do 
     rating = rand(1..10)
     review_content = "This game had no redeeming qualities. I want my time back."
     if rating == 10 
         review_content = "Love this game. Want to play it again and again and again."
     elsif rating == 9
-        review_content = "Highly recommend. Was a big hit with my friends!"
+        review_content = "Was a big hit with my friends!"
     elsif rating == 8
         review_content = "Great experience for everyone. Highly recommend."
     elsif rating == 7
-        review_content = "Had a lot of fun playing this game. Everyone was engaged, although we were a little confused with the instructions."
+        review_content = "Had a lot of fun playing this game. Everyone was engaged, although we were a little confused by the instructions."
     elsif rating == 6
         review_content = "We liked playing this game. Wish there were more rounds."
     elsif rating == 5
         review_content = "Made friends into enemies. Not sure if that's a good or a bad thing."
     elsif rating == 4
-        review_content = "Had some issues with the rules were a little unclear, but the game went alright."
+        review_content = "Had some issues with the rules being a little unclear, but the game went alright."
     elsif rating == 3
         review_content = "Was surprised by other positive reviews. Didn't get much out of this one."
     elsif rating == 2
-        review_content = "Poor experience and instructions."
+        review_content = "Meh..."
     end
     rating = (rating / 2).ceil
     user = User.all.sample
