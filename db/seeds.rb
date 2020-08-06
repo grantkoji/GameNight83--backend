@@ -21,7 +21,7 @@ puts "Clearing Database"
 games_title_array = ["Charades", "Codenames", "Words With Friends", "Settlers of Catan", "Dominion", "Pandemic", "Ticket To Ride", "KanJam", "Bocce", "Spikeball", "Cornhole", "Inflatable Bubble Soccer", "Wooden Lawn Bowling", "Bingo", "Scattegories", "Most Likely To...", "Trivia", "Pictionary", "Heads Up!"]
 
 25.times do 
-    User.create!(username: Faker::TvShows::SouthPark.unique.character, name: Faker::Name.unique.name, password: "1234", age: rand(18..65), fav_games: Faker::Game.unique.title)
+    User.create!(username: Faker::TvShows::SouthPark.unique.character, name: Faker::Name.unique.name, password: "1234", age: rand(18..65), fav_games: games_title_array.sample)
 end
 
 this_user = User.create!(username: "Catanimal", name: "Grant", password: "1234", age: 75, fav_games: "Catan, Codenames, KanJam, Quiplash")
