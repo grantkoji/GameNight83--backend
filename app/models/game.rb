@@ -5,6 +5,10 @@ class Game < ApplicationRecord
     has_many :reviews
     has_many :game_photos
 
+    def creator_username
+        self.creator.username
+    end
+
 
     # has_many :game_hosts
     # has_many :hosts, :class_name => "User", through: :game_hosts

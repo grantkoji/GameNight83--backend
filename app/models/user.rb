@@ -9,6 +9,10 @@ class User < ApplicationRecord
     has_many :reviews
     has_many :game_photos
 
+    def total_friends
+      friend_array = self.friends + self.inverse_friends
+      friend_array.uniq
+    end
 
     # user.friends if user_id in friendship table #=> array of friends
     # user.inverse_friends if friend_id in friendship table #=> array of inverse_friends

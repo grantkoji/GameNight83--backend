@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
     def encode_token(payload)
         # should store secret in env variable
-        JWT.encode(payload, 'def123')
+        JWT.encode(payload, 'calh0un')
       end
     
     
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::API
           token = auth_header
           # header: { 'Authorization': '<token>' }
           begin
-            JWT.decode(token, 'def123', true, algorithm: 'HS256')
+            JWT.decode(token, 'calh0un', true, algorithm: 'HS256')
           rescue JWT::DecodeError
             nil
           end
