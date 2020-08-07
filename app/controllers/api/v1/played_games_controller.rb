@@ -1,6 +1,6 @@
 class Api::V1::PlayedGamesController < ApplicationController
     before_action :authorized, only: [:create]
-    
+
     def index
        played_games = PlayedGame.all
         render json: played_games
@@ -12,8 +12,11 @@ class Api::V1::PlayedGamesController < ApplicationController
     end
 
     def create
-        played_game = PlayedGame.create!(played_game_params)
+        played_game = @user.played_games.create(num_stars: params[:num_stars], game_id: params[:game_id], content: params[:content])
         render json: played_game
+
+        # played_game = PlayedGame.create!(played_game_params)
+        # render json: played_game
     end  
 
     def update
