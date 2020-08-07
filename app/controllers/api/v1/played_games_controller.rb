@@ -1,4 +1,6 @@
 class Api::V1::PlayedGamesController < ApplicationController
+    before_action :authorized, only: [:create]
+    
     def index
        played_games = PlayedGame.all
         render json: played_games

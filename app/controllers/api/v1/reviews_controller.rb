@@ -1,4 +1,5 @@
 class Api::V1::ReviewsController < ApplicationController
+    before_action :authorized, only: [:create]
     def index
        reviews = Review.all
         render json: reviews
@@ -10,8 +11,11 @@ class Api::V1::ReviewsController < ApplicationController
     end
 
     def create
-        review = Review.create!(review_params)
+        review = @user.reviews.create(num_stars: params[:num_stars], game_id: params[:game_id], content: params[:content])
         render json: review
+        
+        # review = Review.create!(review_params)
+        # render json: review
     end  
 
     def update
