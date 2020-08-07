@@ -76,7 +76,7 @@ instructions_and_rules: "KanJam is a frisbee based 2 on 2 team game that involve
 "The ways to score in KanJam break down like this: ​1 Point - Partner Deflects And Hits Can. 2 Points - Disc Hits Can Without Deflection. 3 Points - Partner Jams Disc Inside of Can")
 
 
-GamePhoto.create!(likes: rand(0..100), game_id: game2.id, user_id: User.all.sample.id, caption: "Played a pro. Game was over the second he hopped out of his car", image_url: "https://www.flaghouse.com/productImages/image.axd/i.80390/a.3/w.1000/h.1000/KanJam+Disc+Game+-+Class+Pack_XL.jpg")
+GamePhoto.create!(likes: rand(0..100), game_id: game2.id, user_id: User.all.sample.id, caption: "Played a pro. Game was over the second she hopped out of his car", image_url: "https://www.flaghouse.com/productImages/image.axd/i.80390/a.3/w.1000/h.1000/KanJam+Disc+Game+-+Class+Pack_XL.jpg")
 GamePhoto.create!(likes: rand(0..100), game_id: game2.id, user_id: this_user.id, caption: "Long distance Kam Jam. Should've joined the Ultimate Frisbee team", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTATW0JSM4M_NHqCdq61ooigAVZgUabGX0KQA&usqp=CAU")
 GamePhoto.create!(likes: rand(0..100), game_id: game2.id, user_id: User.all.sample.id, caption: "And that was just a warm up jump", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPyFVwayCaa4oXhbQnqqpckPZOJPthbJs10w&usqp=CAU")
 GamePhoto.create!(likes: rand(0..100), game_id: game2.id, user_id: User.all.sample.id, caption: "Four W's in a row", image_url: "https://bloximages.newyork1.vip.townnews.com/nny360.com/content/tncms/assets/v3/editorial/5/5e/55e7dd96-d76d-11e9-aa21-6bfa2a4137b8/5d7db75468553.image.jpg?resize=1200%2C800")
@@ -163,7 +163,7 @@ description: "A fun way to get to know your friends. Drinking is optional", link
 GamePhoto.create!(likes: rand(0..100), game_id: game10.id, user_id: User.all.sample.id, caption: "Most Likely To win the Oscar...", image_url: "https://www.etonline.com/sites/default/files/styles/max_970x546/public/images/2020-04/streep.jpg?h=884b70cc&itok=LhjepvxK")
 GamePhoto.create!(likes: rand(0..100), game_id: game10.id, user_id: User.all.sample.id, caption: "Voted Most Likely To become a bestselling author. Bottoms up, then back to typing...", image_url: "https://static01.nyt.com/images/2020/03/27/multimedia/20happy-hour-coronavirus/20happy-hour-coronavirus-mobileMasterAt3x.jpg")
 GamePhoto.create!(likes: rand(0..100), game_id: game10.id, user_id: User.all.sample.id, caption: "Most Likely To hoard toilet paper. Guess who won?", image_url: "https://i.dailymail.co.uk/1s/2020/03/06/08/25614960-8081859-image-a-48_1583482874060.jpg")
-GamePhoto.create!(likes: rand(0..100), game_id: game10.id, user_id: this_user.id, caption: "Most Likely To games keep ending in a TIE!!!", image_url: "https://i.ytimg.com/vi/w5-n290V_Z4/hqdefault.jpg")
+GamePhoto.create!(likes: rand(0..100), game_id: game10.id, user_id: this_user.id, caption: "Games keep ending in a TIE!!!", image_url: "https://i.ytimg.com/vi/w5-n290V_Z4/hqdefault.jpg")
 
 game11 = Game.create!(title: "Trivia", creator_id: User.all.sample.id, min_age: 10, min_num_players: 4, max_num_players: 20, image_url: "https://www.griswoldhomecare.com/wp-content/uploads/2020/06/bigstock-Trivia-Contest-Quiz-Game-Night-325315975.jpg",
 description: "Play Trivia online", link_to_game_website: "https://www.randomtriviagenerator.com", game_category: "Zoom or indoors", instructions_and_rules: "To play trivia on Zoom, click the link to open a random trivia generator and start asking questions. Have each person send their answer in the Zoom chat at the same time (or just use the honors system).")
@@ -186,7 +186,6 @@ description: "Use the Heads Up! phone app while on zoom", link_to_game_website: 
 " Click on the link to download Heads Up! on the Game Host's phone. To play on Zoom, have the Game Host show the phone running Heads Up!, while the person who is 'Up' must not look at their Zoom screen. Game is the same otherwise.")
 
 GamePhoto.create!(likes: rand(0..100), game_id: game13.id, user_id: User.all.sample.id, caption: "Ready to go, but forgot to install the app", image_url: "https://happymomhacks.com/wp-content/uploads/2020/04/heads-up-768x644.jpg")
-GamePhoto.create!(likes: rand(0..100), game_id: game13.id, user_id: User.all.sample.id, caption: "Yeah, he doesn't know how to do that...", image_url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.scoopnest.com%2Fuser%2Fbillboard%2F705509329777070081-we-played-heads-up-with-zedd-today-and-you-can-watch-the-fun-right-here&psig=AOvVaw04dMAGr1NIjIaMdHcTSlw7&ust=1596765091083000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOjZ5dS8hesCFQAAAAAdAAAAABAE")
 GamePhoto.create!(likes: rand(0..100), game_id: game13.id, user_id: this_user.id, caption: "Your child may read at the 8th Grade level, but mine got 7 right on this round", image_url: "https://gretapunch.files.wordpress.com/2014/03/heads-up.png")
 GamePhoto.create!(likes: rand(0..100), game_id: game13.id, user_id: this_user.id, caption: "Jeff refuses to turn around to start his turn! Meanwhile, Rachel's just holding her phone...", image_url: "https://i.insider.com/5ea30c63a34b3c67b324de14?width=1100&format=jpeg&auto=webp")
 
@@ -195,7 +194,6 @@ description: "Charades while on zoom", link_to_game_website: "http://www.getchar
 
 GamePhoto.create!(likes: rand(0..100), game_id: game14.id, user_id: this_user.id, caption: "It was high five. How did they not get high five!?!?!", image_url: "https://imgix.bustle.com/uploads/getty/2020/3/27/ed8cc558-7510-49c4-a5d9-c5e06dda90df-getty-1214101407.jpg?w=1200&h=630&q=70&fit=crop&crop=faces&fm=jpg")
 GamePhoto.create!(likes: rand(0..100), game_id: game14.id, user_id: User.all.sample.id, caption: "Four words...", image_url: "https://pbs.twimg.com/media/EUDnnzsWAAQ1HJ-.jpg")
-GamePhoto.create!(likes: rand(0..100), game_id: game14.id, user_id: User.all.sample.id, caption: "Locked in and ready to go. Future Gamer!", image_url: "https://lh3.googleusercontent.com/proxy/uyQQdDc_XyO_nDRAlQGlXHxg8S6YvYDkuaf7pEfmzUVOD2o0O8184I0BxEfVPlXvLNzD6Vu8TtmORTMtDqGU0UWUBmbHj_Ov-gZAqeyqwNIr7_2OkW_i6rgDtA")
 
 game15 = Game.create!(title: "Codenames", creator_id: this_user.id, min_age: 12, min_num_players: 4, max_num_players: 14, image_url: "https://cf.geekdo-images.com/opengraph/img/KvWkw6TGLr4arA4E1lwnJocdy8E=/fit-in/1200x630/pic2582929.jpg",
 description: "Codenames while on zoom", link_to_game_website: "https://codenames.game/", game_category: "Zoom boardgame", instructions_and_rules: "What you need to play: Zoom, either click the link to get the online version or use the regular Codenames card game and an extra camera to stream the board with some creative rigging equipment."\
@@ -238,7 +236,7 @@ game20 = Game.create!(title: "Settlers of Catan", creator_id: this_user.id, min_
 description: "Settlers of Catan online", link_to_game_website: "https://www.catanuniverse.com/", game_category: "Online boardgame", instructions_and_rules: "Click the link to get the online version. Can Zoom or Facetime your friends on a separate device to negotiate trades. It's easy to use once set up, but a pain to get started. To purchase the game, create an account."\
 " Logging in will take you to the home page. To purchase the online game, click the icon on the top right corner. You will have to first buy 'Gold', then use that Gold to buy 'Expansions'")
 
-GamePhoto.create!(likes: rand(0..100), game_id: game20.id, user_id: User.all.sample.id, caption: "The game was over before it even begun, they just didn't now it yet", image_url: "https://i.insider.com/5e7a5261671de0466d70d443")
+GamePhoto.create!(likes: rand(0..100), game_id: game20.id, user_id: User.all.sample.id, caption: "The game was over before it even begun, they just didn't know it yet", image_url: "https://i.insider.com/5e7a5261671de0466d70d443")
 GamePhoto.create!(likes: rand(0..100), game_id: game20.id, user_id: User.all.sample.id, caption: "Got wheat, looking for brick...how about sheep?", image_url: "https://i.insider.com/5e7a43f62d41c108fa457e61?width=1100&format=jpeg&auto=webp")
 GamePhoto.create!(likes: rand(0..100), game_id: game20.id, user_id: this_user.id, caption: "Get that ish off me!", image_url: "https://i.ytimg.com/vi/Yek6OXhCCg4/maxresdefault.jpg")
 GamePhoto.create!(likes: rand(0..100), game_id: game20.id, user_id: this_user.id, caption: "All of those 7's!", image_url: "https://i.imgur.com/4vvoXcd.jpg")

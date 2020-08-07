@@ -10,4 +10,8 @@ class Review < ApplicationRecord
     def user_name
         self.user.username
     end
+    
+    def game_photo
+        self.game.image_url
+    end
 end
