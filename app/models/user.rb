@@ -1,18 +1,19 @@
 class User < ApplicationRecord
-      has_secure_password
-    has_many :played_games, :foreign_key => :host_id
-    has_many :games, :foreign_key => :creator_id
-    has_many :friendships
-    has_many :friends, :through => :friendships
-    has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
-    has_many :inverse_friends, :through => :inverse_friendships, :source => :user
-    has_many :reviews
-    has_many :game_photos
+  validates_uniqueness_of :username
+  has_secure_password
+  has_many :played_games, :foreign_key => :host_id
+  has_many :games, :foreign_key => :creator_id
+  has_many :friendships
+  has_many :friends, :through => :friendships
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+  has_many :reviews
+  has_many :game_photos
 
-    def total_friends
-      friend_array = self.friends + self.inverse_friends
-      friend_array.uniq
-    end
+  def total_friends
+    friend_array = self.friends + self.inverse_friends
+    friend_array.uniq
+  end
 
     # user.friends if user_id in friendship table #=> array of friends
     # user.inverse_friends if friend_id in friendship table #=> array of inverse_friends

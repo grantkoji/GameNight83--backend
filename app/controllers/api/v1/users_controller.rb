@@ -36,7 +36,7 @@ class Api::V1::UsersController < ApplicationController
      end
 
      def create
-        user = User.create(user_params())
+        user = User.create(user_params)
         if user.valid?
           wristband = encode_token({user_id: user.id})
           render json: {
