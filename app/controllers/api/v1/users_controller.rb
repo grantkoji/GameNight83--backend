@@ -1,12 +1,31 @@
 class Api::V1::UsersController < ApplicationController
     before_action :authorized, only: [:stay_logged_in]
   
-    def login
-      user = User.find_by(username: params[:username])
-      if user && user.authenticate(params[:password])
+    def create
+      user = User.create(
+        username: params[:username], 
+        password: params[:password], 
+        name: params[:name],
+        fav_games: params[:fav_games],
+        age: params[:age]
+      )
+      if user.valid?
         wristband = encode_token({user_id: user.id})
         render json: {
           user: UserSerializer.new(user),
+          token: wristband
+        }
+      else
+        render json: {message: "Failed to create a new user"}, status: 403
+      end
+    end
+
+    def login
+      @user = User.find_by(username: params[:username])
+      if @user && @user.authenticate(params[:password])
+        wristband = encode_token({user_id: @user.id})
+        render json: {
+          user: UserSerializer.new(@user),
           token: wristband
         }
       else
@@ -35,18 +54,7 @@ class Api::V1::UsersController < ApplicationController
          render json: user
      end
 
-     def create
-        user = User.create(user_params)
-        if user.valid?
-          wristband = encode_token({user_id: user.id})
-          render json: {
-            user: UserSerializer.new(user),
-            token: wristband
-          }
-        else
-          render json: {message: "Failed to create a new user"}, status: 403
-        end
-      end
+   
  
      def update
          user = User.find(params[:id])

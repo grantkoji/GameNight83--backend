@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  validates_uniqueness_of :username
-  has_secure_password
   has_many :played_games, :foreign_key => :host_id
   has_many :games, :foreign_key => :creator_id
   has_many :friendships
@@ -9,6 +7,8 @@ class User < ApplicationRecord
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
   has_many :reviews
   has_many :game_photos
+  validates_uniqueness_of :username
+  has_secure_password
 
   def total_friends
     friend_array = self.friends + self.inverse_friends
