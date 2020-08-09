@@ -9,6 +9,16 @@ class Game < ApplicationRecord
         self.creator.username
     end
 
+    def average_rating
+        if (self.reviews.length > 0)
+            sumReviews = self.reviews.reduce do |sum, review|
+                sum + review.num_stars
+            end
+        sumReviews / self.reviews.length
+        else 
+            "No Reviews"
+        end 
+    end
 
     # has_many :game_hosts
     # has_many :hosts, :class_name => "User", through: :game_hosts
