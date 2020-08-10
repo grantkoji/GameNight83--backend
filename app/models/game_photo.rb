@@ -11,4 +11,8 @@ class GamePhoto < ApplicationRecord
         self.user.username
     end
 
+    def game_category
+        self.game.game_category
+    end
+
 end

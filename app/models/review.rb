@@ -7,6 +7,10 @@ class Review < ApplicationRecord
         self.game.title
     end
 
+    def game_category
+        self.game.game_category
+    end
+
     def user_name
         self.user.username
     end
