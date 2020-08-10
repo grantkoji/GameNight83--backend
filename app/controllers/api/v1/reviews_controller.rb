@@ -12,7 +12,11 @@ class Api::V1::ReviewsController < ApplicationController
 
     def create
         review = @user.reviews.create(num_stars: params[:num_stars], game_id: params[:game_id], content: params[:content])
-        render json: review
+        if review.valid?
+            render json: review
+          else
+            render json: {message: "Failed to post your review"}
+        end
         
         # review = Review.create!(review_params)
         # render json: review
