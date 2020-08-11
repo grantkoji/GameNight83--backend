@@ -44,4 +44,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :friendship_requests
+    end
+  end
+
 end
