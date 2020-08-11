@@ -12,7 +12,7 @@ class Api::V1::FriendshipRequestsController < ApplicationController
     end
 
     def create
-        friendship_request = FriendshipRequest.create!(user_id: @user.id, requester_id: params[:requester_id])
+        friendship_request = FriendshipRequest.create!(user_id: @user.id, request_id: params[:request_id])
         render json: friendship_request
     end  
 
