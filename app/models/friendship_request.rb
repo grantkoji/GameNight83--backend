@@ -6,6 +6,14 @@ class FriendshipRequest < ApplicationRecord
         self.user.username
     end
 
+    def user_photo 
+        self.user.profile_url
+    end
+
+    def request_photo
+        self.request.profile_url
+    end
+
     def request_name
         self.request.username
     end
