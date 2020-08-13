@@ -9,8 +9,13 @@ class Api::V1::FriendshipsController < ApplicationController
         render json: friend
     end
 
+    # def create
+    #     friend = Friendship.create!(friendship_params)
+    #     render json: friend
+    # end  
+
     def create
-        friend = Friendship.create!(friendship_params)
+        friend = Friendship.create!(user_id: params[:user_id], friend_id: @user.id)
         render json: friend
     end  
 
