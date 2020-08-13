@@ -27,9 +27,10 @@ class User < ApplicationRecord
   end
 
   def friend_requests_received
-    self.inverse_requests
+    self.inverse_friendship_requests
   end
 
+ 
     # user.friends if user_id in friendship table #=> array of friends
     # user.inverse_friends if friend_id in friendship table #=> array of inverse_friends
     # user.hosted_games => array of games hosted by this user
