@@ -28,7 +28,8 @@ class Api::V1::FriendshipsController < ApplicationController
     def destroy
         friend = Friendship.find(params[:id])
         friend.destroy!
-        render json: {}
+        friends = Friendship.all
+        render json: friends
     end
 
    
