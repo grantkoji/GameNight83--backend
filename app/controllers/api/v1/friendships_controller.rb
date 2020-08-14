@@ -1,4 +1,5 @@
 class Api::V1::FriendshipsController < ApplicationController
+    before_action :authorized, only: [:create]
     def index
        friends = Friendship.all
         render json: friends
