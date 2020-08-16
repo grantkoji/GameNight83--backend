@@ -9,6 +9,10 @@ class Game < ApplicationRecord
         self.creator.username
     end
 
+    def creator_photo
+        self.creator.profile_url
+    end
+
     # def average_rating
     #     if (self.reviews.length > 0)
     #         sumReviews = self.reviews.reduce do |sum, review|
