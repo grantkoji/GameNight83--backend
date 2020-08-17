@@ -8,9 +8,6 @@ class ScheduledGame < ApplicationRecord
         self.scheduled_game_players.users
     end
 
-    def game_title 
-        self.game.title
-    end
 
     #add notes to this
     def host_user
