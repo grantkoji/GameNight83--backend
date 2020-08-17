@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  has_many :played_games, :foreign_key => :host_id
+  # has_many :played_games, :foreign_key => :host_id
+  has_many :scheduled_games, :foreign_key => :host_id
+  has_many :scheduled_game_players
   has_many :games, :foreign_key => :creator_id
   has_many :reviews
   has_many :game_photos
