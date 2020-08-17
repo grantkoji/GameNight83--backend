@@ -10,9 +10,9 @@ class ScheduledGame < ApplicationRecord
 
 
     #add notes to this
-    def host_user
-        self.host
-    end
+    # def host_user
+    #     self.host
+    # end
 
     
 

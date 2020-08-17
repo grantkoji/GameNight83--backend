@@ -12,7 +12,6 @@ class Api::V1::ScheduledGamesController < ApplicationController
     end
 
     def create
-        byebug
         scheduled_game = ScheduledGame.create!(
                             game_id: params[:game_id],
                             host_id: @user.id,
