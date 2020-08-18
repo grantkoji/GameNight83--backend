@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_17_173915) do
+ActiveRecord::Schema.define(version: 2020_08_18_030405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,11 @@ ActiveRecord::Schema.define(version: 2020_08_17_173915) do
     t.integer "num_stars"
   end
 
+  create_table "scheduled_game_players", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "scheduled_game_id"
+  end
+
   create_table "scheduled_games", force: :cascade do |t|
     t.integer "host_id"
     t.integer "game_id"
@@ -70,6 +75,7 @@ ActiveRecord::Schema.define(version: 2020_08_17_173915) do
     t.string "public_description"
     t.string "private_directions"
     t.string "privacy"
+    t.integer "initial_vacant_spots"
   end
 
   create_table "users", force: :cascade do |t|

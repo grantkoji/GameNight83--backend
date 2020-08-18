@@ -20,5 +20,6 @@ class ScheduledGamePlayer < ApplicationRecord
     def this_game_host
         self.scheduled_game.host
     end
+    
 
 end
