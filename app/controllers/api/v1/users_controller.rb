@@ -7,7 +7,8 @@ class Api::V1::UsersController < ApplicationController
         password: params[:password], 
         name: params[:name],
         fav_games: params[:fav_games],
-        age: params[:age]
+        age: params[:age],
+        profile_url: params[:profile_url]
       )
       if user.valid?
         wristband = encode_token({user_id: user.id})
